@@ -446,7 +446,7 @@ namespace JWT.Controllers
             // Check if the user exists based on the email
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
-                return BadRequest("User not found.");
+                return BadRequest(new { success = false, message = "User not found." });
 
             // Generate OTP
             string otp = GenerateOTP.GenerateOtp();
@@ -479,7 +479,7 @@ namespace JWT.Controllers
 
             await _mailService.SendEmailAsync(model.Email, "Password Reset OTP", emailBody);
 
-            return Ok("OTP sent to your email.");
+            return Ok(new { success = true, message = "OTP has been sent to your email." });
         }
 
 
@@ -491,7 +491,7 @@ namespace JWT.Controllers
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequestDTO model)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Invalid request.");
+                return BadRequest(new { success = false, message = "Invalid request." });
 
             // Retrieve the OTP record from the database
             var otpRecord = await _context.OtpVerification
@@ -500,20 +500,20 @@ namespace JWT.Controllers
             // Check if OTP exists
             if (otpRecord == null)
             {
-                return BadRequest("Invalid OTP.");
+                return BadRequest(new { success = false, message = "Invalid OTP." });
             }
 
             // Check if OTP has expired
             if (DateTime.UtcNow > otpRecord.ExpirationTime)
             {
-                return BadRequest("OTP has expired.");
+                return BadRequest(new { success = false, message = "OTP has Expired" });
             }
 
             // Retrieve the user by email
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
-                return BadRequest("User not found.");
+                return BadRequest(new { success = false, message = "User not found." });
             }
 
             // Generate a password reset token for the user
@@ -523,7 +523,7 @@ namespace JWT.Controllers
             var resetResult = await _userManager.ResetPasswordAsync(user, resetToken, model.NewPassword);
             if (!resetResult.Succeeded)
             {
-                return BadRequest("Password reset failed.");
+                return BadRequest(new { success = false, message = "Password reset failed." });
             }
 
             // Delete the OTP record after successful password reset
@@ -533,7 +533,7 @@ namespace JWT.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Ok("Password reset successful.");
+            return Ok(new { success = true, message = "Password reset successful." });
         }
     }
 }

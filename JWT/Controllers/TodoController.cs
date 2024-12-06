@@ -90,7 +90,7 @@ namespace Edu_plat.Controllers
             var UserChecked = await _userManager.FindByIdAsync(userId);
             if (UserChecked == null)
             {
-                return NotFound(new {success=false ,message=""});
+                return NotFound(new {success=false ,message="User not found dummy"});
             }
 
             
@@ -99,7 +99,7 @@ namespace Edu_plat.Controllers
                 var user = await _context.Users.FindAsync(userId);
                 if (user == null)
                 {
-                    return BadRequest("User was not found.");
+                    return BadRequest(new { success = false, message = "User was not found." });
                 }
 
                 var todoItem = await _context.TodoItems
@@ -107,16 +107,16 @@ namespace Edu_plat.Controllers
 
                 if (todoItem == null)
                 {
-                    return NotFound("Todo item not found.");
+                    return NotFound(new { success = false, message = "Item was not found" });
                 }
 
                 _context.TodoItems.Remove(todoItem);
                 await _context.SaveChangesAsync();
 
-                return Ok("Item deleted successfully.");
+                return Ok(new { success = true, message = "Item deleted successfully." });
             }
 
-            return BadRequest("Item was not deleted.");
+            return BadRequest(new { success = false, message = "Item was not deleted." });
         }
 
         [HttpGet("sort-by-date/{userId}")]
@@ -127,7 +127,7 @@ namespace Edu_plat.Controllers
             var UserChecked = await _userManager.FindByIdAsync(userId);
             if (UserChecked == null)
             {
-                return NotFound("User not found");
+                return NotFound(new { success = false, message = "User not found" });
             }
 
             if (ModelState.IsValid)
@@ -137,14 +137,14 @@ namespace Edu_plat.Controllers
 
                 if (user == null)
                 {
-                    return BadRequest("User not found or wrong todoItem id.");
+                    return BadRequest(new { success = false, message = "User not found or wrong todoItem id." });
                 }
 
                 var sortedItems = user.todoItems.OrderByDescending(td => td.CreationDate).ToList();
 
                 return Ok(sortedItems);
             }
-            return BadRequest("No items found.");
+            return BadRequest(new { success = false, message = "No items found." });
         }
 
         [HttpPut("Update/{id}")]
@@ -152,13 +152,13 @@ namespace Edu_plat.Controllers
         {
             if (updatedItem == null)
             {
-                return BadRequest("Item cannot be null.");
+                return BadRequest(new { success = false, message = "Item cannot be null." });
             }
 
             var todoItem = await _context.TodoItems.FindAsync(id);
             if (todoItem == null)
             {
-                return NotFound("Item not found.");
+                return NotFound(new { success = false, message = "Item was not found" });
             }
 
             todoItem.Title = updatedItem.Title;
@@ -169,7 +169,7 @@ namespace Edu_plat.Controllers
             _context.TodoItems.Update(todoItem);
             await _context.SaveChangesAsync();
 
-            return Ok("Item updated successfully.");
+            return Ok(new { success = true, message = "Item updated successfully." });
         }
     }
 }
