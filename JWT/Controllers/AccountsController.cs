@@ -99,7 +99,7 @@ namespace JWT.Controllers
             // cjeck exmail Exist or Not if exist not can Register the same Email  
             var existingUser = await _userManager.Users.AnyAsync(u => u.Email == dto.Email);
             if (existingUser)
-                return BadRequest("Email already exists");
+                return BadRequest(new { success = false, message = "Email already exists" });
 
             // check Email store in TemporaryUser or Not 
             var existingTempUser = await _context.TemporaryUsers
@@ -126,7 +126,7 @@ namespace JWT.Controllers
                   <p><strong>The EduPlat Team</strong></p>");
 
 
-                    return Ok("OTP has been resent to your email.");
+                    return Ok(new { success = true, message = "OTP has been resent to your email." });
                 }
                 else
                 {
@@ -155,7 +155,7 @@ namespace JWT.Controllers
                     $"<p>EduPlat</p>");
 
 
-                    return Ok("OTP has been resent to your email.");
+                    return Ok(new { success = true, message = "OTP has been resent to your email." });
                 }
             }
 
@@ -193,7 +193,7 @@ namespace JWT.Controllers
     $"<p>The EduPlat Team</p>");
 
 
-            return Ok("Registration successful. A verification code has been sent to your email.");
+            return Ok(new { success = true, message = "Registration successful. A verification code has been sent to your email." });
         }
 
         #endregion
@@ -208,16 +208,16 @@ namespace JWT.Controllers
             // check otp 
             var otpRecord = await _context.OtpVerification.FirstOrDefaultAsync(o => o.Otp == dto.Otp);
             if (otpRecord == null)
-                return BadRequest("Invalid OTP.");
+                return BadRequest(new { success = false, message = "Invalid OTP." });
 
             // check expire Time 
             if (DateTime.UtcNow > otpRecord.ExpirationTime)
-                return BadRequest("OTP has expired.");
+                return BadRequest(new { success = false, message = "OTP has expired." });
 
             // find tempUser 
             var tempUser = await _context.TemporaryUsers.FirstOrDefaultAsync(u => u.Email == otpRecord.Email);
             if (tempUser == null)
-                return BadRequest("Temporary user not found.");
+                return BadRequest(new { success = false, message = "user was not found." });
 
             // delete otp 
             _context.OtpVerification.Remove(otpRecord);
@@ -234,7 +234,7 @@ namespace JWT.Controllers
 
             var result = await _userManager.CreateAsync(newUser, tempUser.PasswordHash);
             if (!result.Succeeded)
-                return BadRequest(result.Errors);
+                return BadRequest(new { success = false, message = "Error in creating user" });
             if (result.Succeeded)
             {
                 newUser.EmailConfirmed = true;
@@ -257,7 +257,7 @@ namespace JWT.Controllers
             _context.TemporaryUsers.Remove(tempUser);
             await _context.SaveChangesAsync();
 
-            return Ok("Email verified successfully and user account created.");
+            return Ok(new { success = true, message = "Email verified successfully and user created." });
         }
 
         #endregion
@@ -323,11 +323,11 @@ namespace JWT.Controllers
                 else
                 {
 
-                    return BadRequest("User or Password inValid");
+                    return BadRequest(new { success = false, message = "Email or Password inValid" });
                 }
             }
             else
-                return BadRequest("InValid Data");
+                return BadRequest(new { success = false, message = "Invalid Input Data" });
         }
         #endregion
 
