@@ -57,10 +57,12 @@ namespace JWT
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins("http://127.0.0.1:3000") // Specify your frontend URL
+                    builder.AllowAnyOrigin() // Specify your frontend URL
                            .AllowAnyHeader()
                            .AllowAnyMethod()
-                           .AllowCredentials();
+                           
+                           ;
+                          
                 });
             });
 

@@ -234,7 +234,7 @@ namespace JWT.Controllers
 
             var result = await _userManager.CreateAsync(newUser, tempUser.PasswordHash);
             if (!result.Succeeded)
-                return BadRequest(new { success = false, message = "Error in creating user" });
+                return BadRequest(result.Errors.ToList());
             if (result.Succeeded)
             {
                 newUser.EmailConfirmed = true;
