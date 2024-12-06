@@ -1,0 +1,160 @@
+G:\New folder\JWT\JWT\obj\Debug\net6.0\JWT.csproj.AssemblyReference.cache
+G:\New folder\JWT\JWT\obj\Debug\net6.0\JWT.GeneratedMSBuildEditorConfig.editorconfig
+G:\New folder\JWT\JWT\obj\Debug\net6.0\JWT.AssemblyInfoInputs.cache
+G:\New folder\JWT\JWT\obj\Debug\net6.0\JWT.AssemblyInfo.cs
+G:\New folder\JWT\JWT\obj\Debug\net6.0\JWT.csproj.CoreCompileInputs.cache
+G:\New folder\JWT\JWT\obj\Debug\net6.0\JWT.MvcApplicationPartsAssemblyInfo.cs
+G:\New folder\JWT\JWT\obj\Debug\net6.0\JWT.MvcApplicationPartsAssemblyInfo.cache
+G:\New folder\JWT\JWT\bin\Debug\net6.0\appsettings.Development.json
+G:\New folder\JWT\JWT\bin\Debug\net6.0\appsettings.json
+G:\New folder\JWT\JWT\bin\Debug\net6.0\JWT.exe
+G:\New folder\JWT\JWT\bin\Debug\net6.0\JWT.deps.json
+G:\New folder\JWT\JWT\bin\Debug\net6.0\JWT.runtimeconfig.json
+G:\New folder\JWT\JWT\bin\Debug\net6.0\JWT.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\JWT.pdb
+G:\New folder\JWT\JWT\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Humanizer.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\MailKit.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.OpenApi.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\MimeKit.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\System.Drawing.Common.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\System.Formats.Asn1.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\System.Runtime.Caching.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\System.Security.Permissions.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\System.Windows.Extensions.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+G:\New folder\JWT\JWT\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+G:\New folder\JWT\JWT\obj\Debug\net6.0\staticwebassets.build.json
+G:\New folder\JWT\JWT\obj\Debug\net6.0\staticwebassets.development.json
+G:\New folder\JWT\JWT\obj\Debug\net6.0\staticwebassets\msbuild.JWT.Microsoft.AspNetCore.StaticWebAssets.props
+G:\New folder\JWT\JWT\obj\Debug\net6.0\staticwebassets\msbuild.build.JWT.props
+G:\New folder\JWT\JWT\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.JWT.props
+G:\New folder\JWT\JWT\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.JWT.props
+G:\New folder\JWT\JWT\obj\Debug\net6.0\staticwebassets.pack.json
+G:\New folder\JWT\JWT\obj\Debug\net6.0\scopedcss\bundle\JWT.styles.css
+G:\New folder\JWT\JWT\obj\Debug\net6.0\JWT.csproj.Up2Date
+G:\New folder\JWT\JWT\obj\Debug\net6.0\JWT.dll
+G:\New folder\JWT\JWT\obj\Debug\net6.0\refint\JWT.dll
+G:\New folder\JWT\JWT\obj\Debug\net6.0\JWT.pdb
+G:\New folder\JWT\JWT\obj\Debug\net6.0\JWT.genruntimeconfig.cache
+G:\New folder\JWT\JWT\obj\Debug\net6.0\ref\JWT.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\appsettings.json
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\JWT.exe
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\JWT.deps.json
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\JWT.runtimeconfig.json
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\JWT.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\JWT.pdb
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Humanizer.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\MailKit.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\MimeKit.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\System.Formats.Asn1.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\System.Runtime.Caching.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\JWT.csproj.AssemblyReference.cache
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\JWT.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\JWT.AssemblyInfoInputs.cache
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\JWT.AssemblyInfo.cs
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\JWT.csproj.CoreCompileInputs.cache
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\JWT.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\JWT.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\staticwebassets\msbuild.JWT.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\staticwebassets\msbuild.build.JWT.props
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.JWT.props
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.JWT.props
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\scopedcss\bundle\JWT.styles.css
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\JWT.csproj.Up2Date
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\JWT.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\refint\JWT.dll
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\JWT.pdb
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\JWT.genruntimeconfig.cache
+C:\Users\moataz\Desktop\API\JWT\JWT\JWT\obj\Debug\net6.0\ref\JWT.dll
