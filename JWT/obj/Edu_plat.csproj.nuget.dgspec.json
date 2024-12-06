@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\moataz\\Desktop\\Everything works except verify\\Edu_plat\\JWT\\JWT\\JWT\\Edu_plat.csproj": {}
+    "C:\\Users\\moataz\\Desktop\\Everything works except verify\\Edu_plat\\JWT\\Project\\JWT\\Edu_plat.csproj": {}
   },
   "projects": {
-    "C:\\Users\\moataz\\Desktop\\Everything works except verify\\Edu_plat\\JWT\\JWT\\JWT\\Edu_plat.csproj": {
+    "C:\\Users\\moataz\\Desktop\\Everything works except verify\\Edu_plat\\JWT\\Project\\JWT\\Edu_plat.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\moataz\\Desktop\\Everything works except verify\\Edu_plat\\JWT\\JWT\\JWT\\Edu_plat.csproj",
+        "projectUniqueName": "C:\\Users\\moataz\\Desktop\\Everything works except verify\\Edu_plat\\JWT\\Project\\JWT\\Edu_plat.csproj",
         "projectName": "Edu_plat",
-        "projectPath": "C:\\Users\\moataz\\Desktop\\Everything works except verify\\Edu_plat\\JWT\\JWT\\JWT\\Edu_plat.csproj",
+        "projectPath": "C:\\Users\\moataz\\Desktop\\Everything works except verify\\Edu_plat\\JWT\\Project\\JWT\\Edu_plat.csproj",
         "packagesPath": "C:\\Users\\moataz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\moataz\\Desktop\\Everything works except verify\\Edu_plat\\JWT\\JWT\\JWT\\obj\\",
+        "outputPath": "C:\\Users\\moataz\\Desktop\\Everything works except verify\\Edu_plat\\JWT\\Project\\JWT\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\moataz\\AppData\\Roaming\\NuGet\\NuGet.Config",
