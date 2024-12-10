@@ -7,5 +7,6 @@
         public string Otp { get; set; }
         public DateTime ExpirationTime { get; set; }
         public string? Purpose { get; set; }
+        public bool IsVerified { get; set; }
     }
 }

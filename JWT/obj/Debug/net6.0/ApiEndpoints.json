@@ -123,6 +123,22 @@
   },
   {
     "ContainingType": "JWT.Controllers.AccountsController",
+    "Method": "ValidateOtp",
+    "RelativePath": "api/Accounts/validate-otp",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "JWT.DTO.VerifyOtpDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "JWT.Controllers.AccountsController",
     "Method": "VerifyEmail",
     "RelativePath": "api/Accounts/VerifyEmail",
     "HttpMethod": "POST",

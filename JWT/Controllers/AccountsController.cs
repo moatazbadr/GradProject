@@ -60,35 +60,6 @@ namespace JWT.Controllers
         }
         #endregion
 
-        #region Register Noe verify
-
-        //[HttpPost("Register")]
-        //public async Task<IActionResult> Register([FromBody] RegisterUserDTO dto)
-        //{
-        //	if (ModelState.IsValid)
-        //	{
-        //		// save DB 
-        //		ApplicationUser applicationUser = new ApplicationUser
-        //		{
-        //			UserName = dto.UserName,
-        //			Email = dto.Email,
-
-        //		};
-        //		IdentityResult result = await _userManager.CreateAsync(applicationUser, dto.Password);
-        //		if (result.Succeeded)
-        //			return Ok("Dn Register");
-
-        //		foreach (var item in result.Errors)
-        //		{
-        //			ModelState.AddModelError("Password", item.Description);
-        //		}
-        //	}
-
-        //	return BadRequest(ModelState);
-
-        //} 
-        #endregion
-
         #region Register 
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterUserDTO dto)
@@ -200,8 +171,6 @@ namespace JWT.Controllers
 
         #region VerifyAccount
 
-        #region VerifyAccount
-
         [HttpPost("VerifyEmail")]
         public async Task<IActionResult> VerifyEmail([FromBody] VerifyOtpDTO dto)
         {
@@ -262,8 +231,6 @@ namespace JWT.Controllers
 
         #endregion
 
-
-        #endregion
         #region Login
 
         [HttpPost("Login")]
@@ -438,230 +405,109 @@ namespace JWT.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid request.");
-            // Remove Otps store in Database (when ask new otp )
+
+            // إزالة سجلات OTP القديمة
             var existingOtps = _context.OtpVerification
-                  .Where(o => o.Email == model.Email && o.Purpose == "ResetPassword");
+                .Where(o => o.Email == model.Email && o.Purpose == "ResetPassword");
             _context.OtpVerification.RemoveRange(existingOtps);
 
-            // Check if the user exists based on the email
+            // التحقق من وجود المستخدم
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
-                return BadRequest(new { success = false, message = "User not found." });
+                return BadRequest("User not found.");
 
-            // Generate OTP
+            // إنشاء OTP جديد
             string otp = GenerateOTP.GenerateOtp();
-
-            // Set OTP expiration time
             DateTime expirationTime = DateTime.UtcNow.AddMinutes(5);
 
-            // Store OTP in the database
             var otpVerification = new OtpVerification
             {
                 Email = model.Email,
                 Otp = otp,
-                Purpose = "ResetPassword", // Define purpose for OTP
-                ExpirationTime = expirationTime
+                Purpose = "ResetPassword",
+                ExpirationTime = expirationTime,
+                IsVerified = false
             };
 
             await _context.OtpVerification.AddAsync(otpVerification);
             await _context.SaveChangesAsync();
 
-            // Send OTP via email
+            // إرسال OTP عبر البريد الإلكتروني
             var emailBody = $@"
-	      <p>Hi there,</p>
-	      <p>We received a request to reset your password, and we're here to help!</p>
-	      <p>Your OTP (One-Time Password) to reset your password is:</p>
-	      <h2 style='color: #2E86C1;'>{otp}</h2>
-	      <p>This code is valid for the next <strong>5 minutes</strong>.</p>
-	      <p>If you didn't request a password reset, no worries—your account is still safe. You can simply ignore this email.</p>
-	      <p>Take care,</p>
-	      <p><strong>The EduPlat Team</strong></p>";
+<p>Hi there,</p>
+<p>We received a request to reset your password, and we're here to help!</p>
+<p>Your OTP (One-Time Password) to reset your password is:</p>
+<h2 style='color: #2E86C1;'>{otp}</h2>
+<p>This code is valid for the next <strong>5 minutes</strong>.</p>
+<p>If you didn't request a password reset, no worries—your account is still safe. You can simply ignore this email.</p>
+<p>Take care,</p>
+<p><strong>The Support Team</strong></p>";
 
             await _mailService.SendEmailAsync(model.Email, "Password Reset OTP", emailBody);
 
-            return Ok(new { success = true, message = "OTP has been sent to your email." });
+            return Ok("OTP sent to your email.");
         }
-
 
         #endregion
 
+        #region ValidateOtp
+        [HttpPost("validate-otp")]
+        public async Task<IActionResult> ValidateOtp([FromBody] VerifyOtpDTO model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid request.");
+
+            var otpRecord = await _context.OtpVerification
+                .FirstOrDefaultAsync(o => o.Otp == model.Otp && o.Purpose == "ResetPassword");
+
+            if (otpRecord == null)
+                return BadRequest("Invalid OTP.");
+
+            if (DateTime.UtcNow > otpRecord.ExpirationTime)
+                return BadRequest("OTP has expired.");
+
+            // تحديث حالة التحقق
+            otpRecord.IsVerified = true;
+            await _context.SaveChangesAsync();
+
+            return Ok("OTP is valid.");
+        }
+        #endregion
+        
         #region ResetPassword 
 
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequestDTO model)
         {
             if (!ModelState.IsValid)
-                return BadRequest(new { success = false, message = "Invalid request." });
+                return BadRequest("Invalid request.");
 
-            // Retrieve the OTP record from the database
+            // Retrieve the verified OTP record
             var otpRecord = await _context.OtpVerification
-                .FirstOrDefaultAsync(o => o.Otp == model.Otp && o.Email == model.Email && o.Purpose == "ResetPassword");
+                .FirstOrDefaultAsync(o => o.IsVerified == true && o.Purpose == "ResetPassword");
 
-            // Check if OTP exists
             if (otpRecord == null)
-            {
-                return BadRequest(new { success = false, message = "Invalid OTP." });
-            }
-
-            // Check if OTP has expired
-            if (DateTime.UtcNow > otpRecord.ExpirationTime)
-            {
-                return BadRequest(new { success = false, message = "OTP has Expired" });
-            }
+                return BadRequest("Unauthorized or expired request.");
 
             // Retrieve the user by email
-            var user = await _userManager.FindByEmailAsync(model.Email);
+            var user = await _userManager.FindByEmailAsync(otpRecord.Email);
             if (user == null)
-            {
-                return BadRequest(new { success = false, message = "User not found." });
-            }
+                return BadRequest("User not found.");
 
-            // Generate a password reset token for the user
-            string resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+            // Generate a password reset token
+            string passwordResetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-            // Reset the user's password using the reset token
-            var resetResult = await _userManager.ResetPasswordAsync(user, resetToken, model.NewPassword);
+            // Reset the user's password
+            var resetResult = await _userManager.ResetPasswordAsync(user, passwordResetToken, model.NewPassword);
             if (!resetResult.Succeeded)
-            {
-                return BadRequest(new { success = false, message = "Password reset failed." });
-            }
+                return BadRequest("Password reset failed.");
 
-            // Delete the OTP record after successful password reset
+            // Remove the OTP record after successful reset
             _context.OtpVerification.Remove(otpRecord);
-
-
-
             await _context.SaveChangesAsync();
 
-            return Ok(new { success = true, message = "Password reset successful." });
+            return Ok("Password reset successful.");
         }
     }
 }
-
-//[HttpPost("forgot-password")]
-//public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequestDTO model)
-//{
-//	if (!ModelState.IsValid)
-//		return BadRequest("Invalid request.");
-
-//	var user = await _userManager.FindByEmailAsync(model.Email);
-//	if (user == null)
-//		return BadRequest("User not found.");
-
-//	// Normalize the email address to lower case to avoid case sensitivity issues
-//	string emailKey = model.Email.ToLower();
-
-//	// Generate OTP
-//	string otp = GenerateOTP.GenerateOtp();
-
-//	// Generate password reset token
-//	string resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
-
-//	// Store OTP, token, and expiration time (5 minutes)
-//	DateTime expirationTime = DateTime.UtcNow.AddMinutes(5);
-//	_otpStoreFR[emailKey] = (otp, resetToken, expirationTime);
-
-//	// Send OTP email
-//	var emailBody = $@"
-//          <p>Hi there,</p>
-//          <p>We received a request to reset your password, and we're here to help!</p>
-//          <p>Your OTP (One-Time Password) to reset your password is:</p>
-//          <h2 style='color: #2E86C1;'>{otp}</h2>
-//          <p>This code is valid for the next <strong>5 minutes</strong>.</p>
-//          <p>If you didn't request a password reset, no worries—your account is still safe. You can simply ignore this email.</p>
-//          <p>Take care,</p>
-//          <p><strong>The [Your App Name] Team</strong></p>";
-
-//	await _mailService.SendEmailAsync(model.Email, "Password Reset OTP", emailBody);
-
-//	return Ok("OTP sent to your email.");
-//}
-
-
-
-
-//[HttpPost("reset-password")]
-//public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequestDTO model)
-//{
-//	if (!ModelState.IsValid)
-//		return BadRequest("Invalid request.");
-
-//	// Normalize the email address to lower case to avoid case sensitivity issues
-//	string emailKey = model.Email.ToLower();
-
-//	// Check if the OTP exists and has not expired
-//	if (!_otpStoreFR.TryGetValue(emailKey, out var otpDetails))
-//		return BadRequest("OTP has not been requested or has expired.");
-
-//	var (storedOtp, resetToken, expirationTime) = otpDetails;
-
-//	// Validate OTP and expiration
-//	if (DateTime.UtcNow > expirationTime)
-//	{
-//		_otpStoreFR.Remove(emailKey); // Remove expired OTP
-//		return BadRequest("OTP has expired. Please request a new one.");
-//	}
-
-//	// Validate the OTP entered by the user
-//	if (storedOtp != model.Otp)
-//		return BadRequest("Invalid OTP.");
-
-//	// Retrieve the user by email
-//	var user = await _userManager.FindByEmailAsync(model.Email);
-//	if (user == null)
-//		return BadRequest("User not found.");
-
-//	// Reset the password
-//	var result = await _userManager.ResetPasswordAsync(user, resetToken, model.NewPassword);
-//	if (result.Succeeded)
-//	{
-//		_otpStoreFR.Remove(emailKey); // Remove the OTP after successful reset
-//		return Ok("Password has been reset successfully.");
-//	}
-
-//	// If password reset fails, return error messages
-//	foreach (var error in result.Errors)
-//	{
-//		ModelState.AddModelError(string.Empty, error.Description);
-//	}
-
-//	return BadRequest(ModelState);
-//}
-
 #endregion
-#region Comment
-//public async Task<IActionResult> VerifyOtp([FromBody] VerifyOtpDTO dto)
-//{
-//	if (!_otpStore.ContainsKey(dto.Email))
-//	{
-//		return BadRequest("No OTP request found for this email.");
-//	}
-
-//	// Compare the OTP entered by the user with the one stored
-//	if (_otpStore[dto.Email] != dto.Otp)
-//	{
-//		return BadRequest("Invalid OTP.");
-//	}
-
-//	// Optionally, you can remove the OTP after it is verified
-//	_otpStore.Remove(dto.Email);
-
-//	return Ok("OTP verified successfully.");
-//} 
-
-#endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
