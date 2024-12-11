@@ -404,7 +404,7 @@ namespace JWT.Controllers
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequestDTO model)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Invalid request.");
+                return BadRequest(new { success = false, message = "Invalid request." });
 
             // إزالة سجلات OTP القديمة
             var existingOtps = _context.OtpVerification
@@ -414,7 +414,7 @@ namespace JWT.Controllers
             // التحقق من وجود المستخدم
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
-                return BadRequest("User not found.");
+                return BadRequest(new { success = false, message = "User not found." });
 
             // إنشاء OTP جديد
             string otp = GenerateOTP.GenerateOtp();
@@ -445,7 +445,7 @@ namespace JWT.Controllers
 
             await _mailService.SendEmailAsync(model.Email, "Password Reset OTP", emailBody);
 
-            return Ok("OTP sent to your email.");
+            return Ok(new { success = true, message = "A password OTP has been sent to your email." });
         }
 
         #endregion
@@ -455,22 +455,22 @@ namespace JWT.Controllers
         public async Task<IActionResult> ValidateOtp([FromBody] VerifyOtpDTO model)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Invalid request.");
+                return BadRequest(new { success = false, message = "Invalid request." });
 
             var otpRecord = await _context.OtpVerification
                 .FirstOrDefaultAsync(o => o.Otp == model.Otp && o.Purpose == "ResetPassword");
 
             if (otpRecord == null)
-                return BadRequest("Invalid OTP.");
+                return BadRequest(new { success = false, message = "Invalid OTP." });
 
             if (DateTime.UtcNow > otpRecord.ExpirationTime)
-                return BadRequest("OTP has expired.");
+                return BadRequest(new { success = false, message = "OTP has expired." });
 
             // تحديث حالة التحقق
             otpRecord.IsVerified = true;
             await _context.SaveChangesAsync();
 
-            return Ok("OTP is valid.");
+            return Ok(new { success = true, message = "OTP is valid" });
         }
         #endregion
         
@@ -480,19 +480,19 @@ namespace JWT.Controllers
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequestDTO model)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Invalid request.");
+                return BadRequest(new { success = false, message = "Invalid request." });
 
             // Retrieve the verified OTP record
             var otpRecord = await _context.OtpVerification
                 .FirstOrDefaultAsync(o => o.IsVerified == true && o.Purpose == "ResetPassword");
 
             if (otpRecord == null)
-                return BadRequest("Unauthorized or expired request.");
+                return BadRequest(new { success = false, message = "Unauthorized or expired request." });
 
             // Retrieve the user by email
             var user = await _userManager.FindByEmailAsync(otpRecord.Email);
             if (user == null)
-                return BadRequest("User not found.");
+                return BadRequest(new { success = false, message = "User not found." });
 
             // Generate a password reset token
             string passwordResetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
@@ -500,13 +500,13 @@ namespace JWT.Controllers
             // Reset the user's password
             var resetResult = await _userManager.ResetPasswordAsync(user, passwordResetToken, model.NewPassword);
             if (!resetResult.Succeeded)
-                return BadRequest("Password reset failed.");
+                return BadRequest(new { success = false, message = "Password reset failed." });
 
             // Remove the OTP record after successful reset
             _context.OtpVerification.Remove(otpRecord);
             await _context.SaveChangesAsync();
 
-            return Ok("Password reset successful.");
+            return Ok(new { success = true, message = "Password reset successful." });
         }
     }
 }
