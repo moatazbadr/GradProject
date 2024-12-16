@@ -1,5 +1,6 @@
 ﻿
 using Edu_plat.Model;
+using Edu_plat.Model.Course_registeration;
 using Edu_plat.Model.OTP;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -31,7 +32,7 @@ namespace JWT.DATA
         public DbSet<TodoItems> TodoItems { get; set; }
         public DbSet<OtpVerification> OtpVerification { get; set; }
         public DbSet<TemporaryUser> TemporaryUsers { get; set; }
-
+        public DbSet<Course> Courses { get; set; }
 
     }
 }

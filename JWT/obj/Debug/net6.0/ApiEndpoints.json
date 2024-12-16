@@ -154,6 +154,111 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Edu_plat.Controllers.CourseController",
+    "Method": "AddCourse",
+    "RelativePath": "api/Course/Add-course",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseFromBody",
+        "Type": "Edu_plat.Model.Course_registeration.Course",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Edu_plat.Controllers.CourseController",
+    "Method": "CouresRegister",
+    "RelativePath": "api/Course/Add-Doctor-Course/{course_id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "course_id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Edu_plat.Controllers.CourseController",
+    "Method": "CoursesByLevel",
+    "RelativePath": "api/Course/Courses-level/{level}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "level",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Edu_plat.Controllers.CourseController",
+    "Method": "CoursesBySemLevel",
+    "RelativePath": "api/Course/Courses-level/{level}/{semester}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "level",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Edu_plat.Controllers.CourseController",
+    "Method": "CoursesBySemster",
+    "RelativePath": "api/Course/Courses-semster/{sem}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sem",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Edu_plat.Controllers.CourseController",
+    "Method": "GetAllCourses",
+    "RelativePath": "api/Course/Get-all-courses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Edu_plat.Controllers.CourseController",
+    "Method": "GetMyCourses",
+    "RelativePath": "api/Course/Get-doctor-courses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Edu_plat.Controllers.ProfileController",
     "Method": "ChangePassword",
     "RelativePath": "api/Profile/changePassword",
