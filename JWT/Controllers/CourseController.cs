@@ -174,8 +174,52 @@ namespace Edu_plat.Controllers
 
 
 
-            #endregion
+        }
+        #endregion
+
+        #region Deleting Courses [Doctor only]
+
+        
+        [Authorize(Roles = "Doctor")]
+        [HttpDelete("Delete-Course/{course_id}")]
+        public async Task<IActionResult> DeleteCourse(int course_id)
+        {
+            if (course_id == 0)
+            {
+                return BadRequest(new { success = false, message = "invalid course Id" });
+            }
+
+            var userId = User.FindFirstValue("AppicationUserId");
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                return NotFound(new { success = false, message = "No doctor found" });
+            }
+            else
+            {
+                var course_required = _context.Courses.Find(course_id);
+                if (course_required == null)
+                {
+
+                    return NotFound(new { success = false, message = "No Course found" });
+                }
+
+                else
+                {
+                    course_required.ApplicationUserId = null;
+                    course_required.isRegistered = false;
+                    _context.Courses.Update(course_required);
+                    _context.SaveChanges();
+                    return Ok(new { success = true, message = "course Deleted sucessfully" });
+
+                }
+            }
+
+
+
 
         }
+        #endregion
     }
 }
