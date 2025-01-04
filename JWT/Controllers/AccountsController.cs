@@ -40,8 +40,6 @@ namespace JWT.Controllers
         // Declare a dictionary where key is a string (email), and value is a tuple (OTP, expiration time)
         private static readonly Dictionary<string, (string Otp, DateTime ExpirationTime)> _otpStoreFR = new Dictionary<string, (string, DateTime)>();
 
-
-
         #region Dependency Injection
         public AccountsController(
             UserManager<ApplicationUser> userManager,

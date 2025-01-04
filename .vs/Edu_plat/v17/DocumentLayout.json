@@ -3,24 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\dto\\registerdoctordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\dto\\registerdoctordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\dto\\mailrequsetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\dto\\mailrequsetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\dto\\loginuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\dto\\loginuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\dto\\forgotpasswordrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\dto\\forgotpasswordrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\model\\course_registeration\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\model\\course_registeration\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,46 +74,111 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RegisterDoctorDTO.cs",
+              "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\DTO\\RegisterDoctorDTO.cs",
+              "RelativeDocumentMoniker": "JWT\\DTO\\RegisterDoctorDTO.cs",
+              "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\DTO\\RegisterDoctorDTO.cs",
+              "RelativeToolTip": "JWT\\DTO\\RegisterDoctorDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T18:36:00.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginUserDTO.cs",
+              "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\DTO\\LoginUserDTO.cs",
+              "RelativeDocumentMoniker": "JWT\\DTO\\LoginUserDTO.cs",
+              "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\DTO\\LoginUserDTO.cs",
+              "RelativeToolTip": "JWT\\DTO\\LoginUserDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T18:35:57.63Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ForgotPasswordRequestDTO.cs",
+              "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\DTO\\ForgotPasswordRequestDTO.cs",
+              "RelativeDocumentMoniker": "JWT\\DTO\\ForgotPasswordRequestDTO.cs",
+              "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\DTO\\ForgotPasswordRequestDTO.cs",
+              "RelativeToolTip": "JWT\\DTO\\ForgotPasswordRequestDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T18:35:54.053Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Course.cs",
+              "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Model\\Course_registeration\\Course.cs",
+              "RelativeDocumentMoniker": "JWT\\Model\\Course_registeration\\Course.cs",
+              "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Model\\Course_registeration\\Course.cs",
+              "RelativeToolTip": "JWT\\Model\\Course_registeration\\Course.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAowBAAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T17:25:17.927Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\appsettings.json",
+              "RelativeDocumentMoniker": "JWT\\appsettings.json",
+              "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\appsettings.json",
+              "RelativeToolTip": "JWT\\appsettings.json",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwB4AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-04T17:22:52.144Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AccountsController.cs",
+              "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Controllers\\AccountsController.cs",
+              "RelativeDocumentMoniker": "JWT\\Controllers\\AccountsController.cs",
+              "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Controllers\\AccountsController.cs",
+              "RelativeToolTip": "JWT\\Controllers\\AccountsController.cs",
+              "ViewState": "AgIAABsBAAAAAAAAAAAQwCcBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T12:06:08.791Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "ProfileController.cs",
               "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Controllers\\ProfileController.cs",
               "RelativeDocumentMoniker": "JWT\\Controllers\\ProfileController.cs",
               "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Controllers\\ProfileController.cs",
               "RelativeToolTip": "JWT\\Controllers\\ProfileController.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAgwE0AAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAADIAAAAAAAAAAAAgwIQAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-03T18:06:14.622Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 10,
               "Title": "TodoController.cs",
               "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Controllers\\TodoController.cs",
               "RelativeDocumentMoniker": "JWT\\Controllers\\TodoController.cs",
               "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Controllers\\TodoController.cs",
               "RelativeToolTip": "JWT\\Controllers\\TodoController.cs",
-              "ViewState": "AgIAAIQAAAAAAAAAAAAowCUAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAKcAAAAAAAAAAAAswCUAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-16T12:47:26.593Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\DATA\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "JWT\\DATA\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\DATA\\ApplicationDbContext.cs",
-              "RelativeToolTip": "JWT\\DATA\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAcwCIAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T12:49:03.909Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ApplicationUser.cs",
               "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "JWT\\ApplicationUser.cs",
@@ -102,13 +191,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
+              "Title": "MailRequsetDTO.cs",
+              "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\DTO\\MailRequsetDTO.cs",
+              "RelativeDocumentMoniker": "JWT\\DTO\\MailRequsetDTO.cs",
+              "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\DTO\\MailRequsetDTO.cs",
+              "RelativeToolTip": "JWT\\DTO\\MailRequsetDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T18:35:59.853Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "CourseController.cs",
               "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Controllers\\CourseController.cs",
               "RelativeDocumentMoniker": "JWT\\Controllers\\CourseController.cs",
               "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Controllers\\CourseController.cs",
               "RelativeToolTip": "JWT\\Controllers\\CourseController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAgwOAAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAWwCoAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-16T12:34:43.792Z",
               "EditorCaption": ""

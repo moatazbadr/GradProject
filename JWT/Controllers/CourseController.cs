@@ -17,13 +17,14 @@ namespace Edu_plat.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-
+        
+        #region Dependence Injection
         public CourseController(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
             _userManager = userManager;
             _context = context;
-        }
-
+        } 
+        #endregion
 
         #region Adding Course [Admin-only]
 
@@ -53,7 +54,6 @@ namespace Edu_plat.Controllers
 
         #endregion
 
-
         #region Getting-all-courses [Admin-only]
 
         [HttpGet("Get-all-courses")]
@@ -76,7 +76,29 @@ namespace Edu_plat.Controllers
             }
             var courseBySemster = await _context.Courses.Where(x => x.Course_semster == sem && x.isRegistered == false).ToListAsync();
 
-            return Ok(courseBySemster);
+            var Level1_Courses = courseBySemster.Where(x => x.Course_level == 1).Select(x =>new { x.CourseCode, x.CourseDescription });
+            var Level2_Courses = courseBySemster.Where(x => x.Course_level == 2).Select(x=> new { x.CourseCode, x.CourseDescription });
+            var Level3_Courses = courseBySemster.Where(x => x.Course_level == 3).Select(x=>x.CourseCode);
+            var Level4_Courses = courseBySemster.Where(x => x.Course_level == 4).Select(x=>x.CourseCode);
+            
+            
+            var SemesterResponse = new 
+            {
+                SmesterId= sem,
+                SemesterLevels =new List<object>
+                {
+                    new { LevelId=1 , Level1_Courses },
+                    new { LevelId=2 , Level2_Courses },
+                    new { LevelId=3 , Level3_Courses },
+                    new { LevelId=4 , Level4_Courses },
+
+
+                }
+
+            };
+
+
+            return Ok(SemesterResponse);
 
         }
 

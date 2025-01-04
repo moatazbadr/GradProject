@@ -7,11 +7,14 @@
         public string CourseDescription { get; set; }
         public int Course_hours { get; set; }
         public int Course_degree { get; set; }
-        public bool isRegistered { get; set; }
+        public bool isRegistered { get; set; }=false;
         public string? ApplicationUserId { get; set; }
         public int Course_level { get; set; }
         public int Course_semster { get; set; }
 
-
+        public Course()
+        {
+            isRegistered = false;
+        }
     }
 }
