@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
 // api change phone (constrain on phone)
@@ -35,9 +36,7 @@ namespace Edu_plat.Controllers
             var userProfile = new
             {
                 user.Email,
-                user.UserName,
-                user.PhoneNumber,
-                ProfilePicture = user.profilePicture != null ? Convert.ToBase64String(user.profilePicture) : null
+                user.UserName
             };
 
 
@@ -130,5 +129,35 @@ namespace Edu_plat.Controllers
 			return BadRequest(ModelState);
 		}
 
-	}
+
+        [HttpGet("profile-pic")]
+        [Authorize(Roles = "Doctor , Student")]
+        public async Task<IActionResult> GetProfilePic()
+        {
+            var userId =  User.FindFirstValue("AppicationUserId");
+            var user =await _userManager.FindByIdAsync(userId);
+            if (user.profilePicture == null)
+            {
+                return NotFound(new { success = false, message = "No profile picture" });
+            }
+            var profilepic=Convert.ToBase64String(user.profilePicture);
+
+            return Ok(profilepic);
+        
+        }
+
+        [HttpGet("phone-number")]
+        [Authorize(Roles = "Doctor,Student")]
+        public async Task<IActionResult> GetPhoneNumber()
+        {
+            var userId = User.FindFirstValue("AppicationUserId");
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound(new { success = false, message = "User not found" });
+            }
+
+            return Ok(new { success = true, phoneNumber = user.PhoneNumber });
+        }
+    }
 }
