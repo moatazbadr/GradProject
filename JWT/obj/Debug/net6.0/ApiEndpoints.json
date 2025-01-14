@@ -172,14 +172,14 @@
   {
     "ContainingType": "Edu_plat.Controllers.CourseController",
     "Method": "CouresRegister",
-    "RelativePath": "api/Course/Add-Doctor-Course/{course_id}",
+    "RelativePath": "api/Course/Add-Doctor-Course",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "course_id",
-        "Type": "System.Int32",
+        "Name": "courseRegistrationDto",
+        "Type": "Edu_plat.DTO.Course_Registration.CourseRegistrationDto",
         "IsRequired": true
       }
     ],
@@ -241,14 +241,14 @@
   {
     "ContainingType": "Edu_plat.Controllers.CourseController",
     "Method": "DeleteCourse",
-    "RelativePath": "api/Course/Delete-Course/{course_id}",
+    "RelativePath": "api/Course/Delete-Course",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "course_id",
-        "Type": "System.Int32",
+        "Name": "courseDeletion",
+        "Type": "Edu_plat.DTO.Course_Registration.CourseDeletion",
         "IsRequired": true
       }
     ],
@@ -355,19 +355,14 @@
   {
     "ContainingType": "Edu_plat.Controllers.TodoController",
     "Method": "AddItem",
-    "RelativePath": "api/Todo/Add-new-todo/{userId}",
+    "RelativePath": "api/Todo/Add-new-todo",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
         "Name": "itemFromUser",
-        "Type": "Edu_plat.Model.TodoItems",
+        "Type": "Edu_plat.DTO.To_doDto.ToDoDto",
         "IsRequired": true
       }
     ],
@@ -376,7 +371,7 @@
   {
     "ContainingType": "Edu_plat.Controllers.TodoController",
     "Method": "DeleteItem",
-    "RelativePath": "api/Todo/Delete/{todoId}/{userId}",
+    "RelativePath": "api/Todo/Delete/{todoId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -385,11 +380,6 @@
         "Name": "todoId",
         "Type": "System.Int32",
         "IsRequired": true
-      },
-      {
-        "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -397,33 +387,21 @@
   {
     "ContainingType": "Edu_plat.Controllers.TodoController",
     "Method": "GetAllItems",
-    "RelativePath": "api/Todo/GetAll/{userId}",
+    "RelativePath": "api/Todo/GetAll",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
     "ContainingType": "Edu_plat.Controllers.TodoController",
     "Method": "SortedItems",
-    "RelativePath": "api/Todo/sort-by-date/{userId}",
+    "RelativePath": "api/Todo/sort-by-date",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -440,8 +418,8 @@
         "IsRequired": true
       },
       {
-        "Name": "updatedItem",
-        "Type": "Edu_plat.Model.TodoItems",
+        "Name": "toDoConfirm",
+        "Type": "Edu_plat.DTO.To_doDto.ToDoConfirm",
         "IsRequired": true
       }
     ],

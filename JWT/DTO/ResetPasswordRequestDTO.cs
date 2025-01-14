@@ -4,13 +4,13 @@ namespace JWT.DTO
 {
 	public class ResetPasswordRequestDTO
 	{
-		//public string Email { get; set; }
-		
-		public string NewPassword { get; set; }
+
+        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$",
+       ErrorMessage = "Password must be 8-20 characters long, with at least one uppercase letter, one lowercase letter, one digit, and one special character.")]
+        public string NewPassword { get; set; }
 		
 		[Compare("NewPassword", ErrorMessage = "The password and confirmation password do not match.") ]
 		public string ConfirmPassword { get; set; }
-		// public string Otp { get; set; } // OTP from  the user
-		//
+		
 	}
 }

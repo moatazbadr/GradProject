@@ -8,7 +8,7 @@ namespace JWT.DTO
 		 public string UserName { get; set; }
 
 
-		//[RegularExpression(@"^[a-zA-Z0-9._%+-]+@sci\.asu\.edu\.eg$", ErrorMessage = "Email must end with 'sci.asu.edu.eg'.")]
+		[RegularExpression(@"^[a-zA-Z0-9._%+-]+@sci\.asu\.edu\.eg$", ErrorMessage = "Email must end with 'sci.asu.edu.eg'.")]
 
 		public string Email { get; set; }  // Email Must end @'sci.asu.edu.eg
 

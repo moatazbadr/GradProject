@@ -22,9 +22,6 @@ namespace JWT.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
-
-
     public class AccountsController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -32,14 +29,12 @@ namespace JWT.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IMailingServices _mailService;
         private readonly ApplicationDbContext _context;
-
-
         // Declare a dictionary where key is a string (email), and value is a tuple (OTP, expiration time, TemporaryUserDTO user)
         private static readonly Dictionary<string, (string Otp, DateTime ExpirationTime, TemporaryUserDTO TempUser)> _otpStore = new Dictionary<string, (string, DateTime, TemporaryUserDTO)>();
 
         // Declare a dictionary where key is a string (email), and value is a tuple (OTP, expiration time)
         private static readonly Dictionary<string, (string Otp, DateTime ExpirationTime)> _otpStoreFR = new Dictionary<string, (string, DateTime)>();
-
+       
         #region Dependency Injection
         public AccountsController(
             UserManager<ApplicationUser> userManager,
@@ -68,7 +63,7 @@ namespace JWT.Controllers
             // cjeck exmail Exist or Not if exist not can Register the same Email  
             var existingUser = await _userManager.Users.AnyAsync(u => u.Email == dto.Email);
             if (existingUser)
-                return BadRequest(new { success = false, message = "Email already exists" });
+                return BadRequest(new { success = false, message = "Email Or password invalid" });
 
             // check Email store in TemporaryUser or Not 
             var existingTempUser = await _context.TemporaryUsers
@@ -88,19 +83,17 @@ namespace JWT.Controllers
                    <p>Hello {dto.UserName},</p>
                   <p>We noticed that you requested an OTP again. Don't worry, your previous code is still valid!</p>
                   <p>Here is your One-Time Password (OTP):</p>
-                  <h2 style='color: #4CAF50;'>{existingOtp.Otp}</h2>
+                  <h1 style='color: #00bfff;'>{existingOtp.Otp}</h1>
                   <p><strong>Note:</strong> This code is valid for the next <strong>5 minutes</strong>.</p>
                    <p>If you did not request this, please ignore this email. Your account is secure.</p>
                     <p>Take care,</p>
                   <p><strong>The EduPlat Team</strong></p>");
-
 
                     return Ok(new { success = true, message = "OTP has been resent to your email." });
                 }
                 else
                 {
                     // if otp finished expire 
-
                     string otp = GenerateOTP.GenerateOtp();
                     DateTime expirationTime = DateTime.UtcNow.AddMinutes(5);
 
@@ -117,12 +110,11 @@ namespace JWT.Controllers
                   $"<p>Dear {dto.UserName},</p>" +
                  $"<p>Welcome! We're excited to have you join us.</p>" +
                  $"<p>Your One-Time Password (OTP) for email verification is:</p>" +
-                $"<h2 style='color: #4CAF50;'>{otp}</h2>" +
+                $"<h2 style='color: #00bfff;'>{otp}</h2>" +
                  $"<p>This code is valid for the next 5 minutes, so please use it promptly.</p>" +
                   $"<p>If you have any questions, feel free to reach out to us.</p>" +
                     $"<p>Best wishes,</p>" +
                     $"<p>EduPlat</p>");
-
 
                     return Ok(new { success = true, message = "OTP has been resent to your email." });
                 }
@@ -134,7 +126,6 @@ namespace JWT.Controllers
                 UserName = dto.UserName,
                 Email = dto.Email,
                 PasswordHash = dto.Password
-
 
             };
             await _context.TemporaryUsers.AddAsync(tempUser);
@@ -155,7 +146,7 @@ namespace JWT.Controllers
             await _mailService.SendEmailAsync(dto.Email, "Welcome to Our Platform!",
     $"<p>Hi {dto.UserName},</p>" +
     $"<p>We’re thrilled to have you here! To complete your registration, please verify your email using the code below:</p>" +
-    $"<h2 style='color: #4CAF50;'>{newOtp}</h2>" +
+    $"<h2 style='color: #00bfff;'>{newOtp}</h2>" +
     $"<p>This code is valid for the next 5 minutes, so make sure to use it soon.</p>" +
     $"<p>Need help? Feel free to reach out—we’re here for you!</p>" +
     $"<p>Warm regards,</p>" +
@@ -184,7 +175,7 @@ namespace JWT.Controllers
             // find tempUser 
             var tempUser = await _context.TemporaryUsers.FirstOrDefaultAsync(u => u.Email == otpRecord.Email);
             if (tempUser == null)
-                return BadRequest(new { success = false, message = "user was not found." });
+                return BadRequest(new { success = false, message = "Incorrect Email" });
 
             // delete otp 
             _context.OtpVerification.Remove(otpRecord);
@@ -248,24 +239,20 @@ namespace JWT.Controllers
                 if (checkPass)
                 {
 
+                    //adding claims to Jwt 
+                    #region claims
                     var UserClaims = new List<Claim>();
-
-
-
                     UserClaims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
                     UserClaims.Add(new Claim("AppicationUserId", account.Id));
                     UserClaims.Add(new Claim("ApplicationUserName", account.UserName));
-
-
 
                     var Roles = await _userManager.GetRolesAsync(account);
                     foreach (var RoleName in Roles)
                         UserClaims.Add(new Claim(ClaimTypes.Role, RoleName));
                     var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:SecretKey"]));
 
-                    SigningCredentials signingCred = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-
+                    SigningCredentials signingCred = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256); 
+                    #endregion
 
                     JwtSecurityToken jwtSecurityToken = new JwtSecurityToken
                     (
@@ -274,6 +261,7 @@ namespace JWT.Controllers
                         expires: DateTime.Now.AddYears(1),
                         claims: UserClaims,
                         signingCredentials: signingCred
+
                     );
                     var roles = await _userManager.GetRolesAsync(account);
 
@@ -300,6 +288,7 @@ namespace JWT.Controllers
 
         //// Admin registration (for demo purposes)
         [HttpPost("RegisterAdmin")]
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterUserDTO dto)
         {
             if (!ModelState.IsValid)
@@ -351,6 +340,9 @@ namespace JWT.Controllers
                 UserName = dto.UserName,
                 Email = dto.Email
             };
+            //var existingUser = await _userManager.Users.AnyAsync(u => u.Email == dto.Email);
+            //if (existingUser)
+            //    return BadRequest(new { success = false, message = "Password or Email is incorrect" });
 
             var result = await _userManager.CreateAsync(doctor, dto.Password);
             // Save the userId for later use
@@ -362,6 +354,10 @@ namespace JWT.Controllers
                 applicationUser = doctor
 
             };
+
+            //check if the doctor already exists
+         
+
             _context.Set<Doctor>().Add(DoctorObj);
             _context.SaveChanges();
             if (result.Succeeded)
@@ -404,17 +400,17 @@ namespace JWT.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = "Invalid request." });
 
-            // إزالة سجلات OTP القديمة
+            // Removing OTP from the registery
             var existingOtps = _context.OtpVerification
                 .Where(o => o.Email == model.Email && o.Purpose == "ResetPassword");
             _context.OtpVerification.RemoveRange(existingOtps);
 
-            // التحقق من وجود المستخدم
+            // checking if the user exist
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
-                return BadRequest(new { success = false, message = "User not found." });
+                return BadRequest(new { success = false, message = "Incorrect Email" });
 
-            // إنشاء OTP جديد
+            // Creating new OTP
             string otp = GenerateOTP.GenerateOtp();
             DateTime expirationTime = DateTime.UtcNow.AddMinutes(5);
 
@@ -430,7 +426,7 @@ namespace JWT.Controllers
             await _context.OtpVerification.AddAsync(otpVerification);
             await _context.SaveChangesAsync();
 
-            // إرسال OTP عبر البريد الإلكتروني
+            //Sending the otp to email
             var emailBody = $@"
 <p>Hi there,</p>
 <p>We received a request to reset your password, and we're here to help!</p>
@@ -464,14 +460,14 @@ namespace JWT.Controllers
             if (DateTime.UtcNow > otpRecord.ExpirationTime)
                 return BadRequest(new { success = false, message = "OTP has expired." });
 
-            // تحديث حالة التحقق
+            // change the status of the otp
             otpRecord.IsVerified = true;
             await _context.SaveChangesAsync();
 
             return Ok(new { success = true, message = "OTP is valid" });
         }
         #endregion
-        
+
         #region ResetPassword 
 
         [HttpPost("reset-password")]
@@ -490,7 +486,7 @@ namespace JWT.Controllers
             // Retrieve the user by email
             var user = await _userManager.FindByEmailAsync(otpRecord.Email);
             if (user == null)
-                return BadRequest(new { success = false, message = "User not found." });
+                return BadRequest(new { success = false, message = "Password or email is invalid" });
 
             // Generate a password reset token
             string passwordResetToken = await _userManager.GeneratePasswordResetTokenAsync(user);

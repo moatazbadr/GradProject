@@ -1,6 +1,9 @@
-﻿using Edu_plat.Model;
+﻿
+using Edu_plat.DTO.To_doDto;
+using Edu_plat.Model;
 using JWT;
 using JWT.DATA;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,93 +18,113 @@ namespace Edu_plat.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        public TodoController(ApplicationDbContext context, UserManager<ApplicationUser> usermangaer)
+
+        public TodoController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
-            _userManager = usermangaer;
+            _userManager = userManager;
         }
 
-        [HttpGet("GetAll/{userId}")]
-
-        public async Task<IActionResult> GetAllItems(string userId)
+        private async Task<ApplicationUser> GetUserByIdAsync(string userId)
         {
-            var checkuser=User.FindFirstValue(userId);
-            var UserChecked= await _userManager.FindByIdAsync(userId);
-            if (UserChecked == null)
-            {
-                return NotFound(new { success=false ,message= "User not found" });
-            }
-
-            if (_context.TodoItems != null)
-            {
-                var todoItems = await _context.TodoItems.Where(td => td.ApplicationUserId == userId).ToListAsync();
-                return Ok(todoItems);
-            }
-
-            return BadRequest(new {success=false,message="No items are here."});
+            return await _userManager.FindByIdAsync(userId);
         }
 
-        [HttpPost("Add-new-todo/{userId}")]
-        public async Task<IActionResult> AddItem(string userId, [FromBody] TodoItems itemFromUser)
+        #region Getting all items
+        [Authorize(Roles = "Student")]
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAllItems()
         {
-            var checkuser = User.FindFirstValue(userId);
-            var UserChecked = await _userManager.FindByIdAsync(userId);
-            if (UserChecked == null)
+            var userId = User.FindFirstValue("AppicationUserId");
+            var user = await GetUserByIdAsync(userId);
+
+            if (user == null)
             {
-                return NotFound(new {success=false,message= "User not found" });
+                return NotFound(new { success = false, message = "User not found" });
             }
 
+            var todoItems = await _context.TodoItems
+                .Where(td => td.ApplicationUserId == userId)
+                .ToListAsync();
+            List<ToDoDto> toDo = new List<ToDoDto>();
+            foreach (var todoItem in todoItems)
+            {
+                ToDoDto tododto = new ToDoDto()
+                {
+                    Id = todoItem.Id,
+                    title = todoItem.Title,
+                    IsDone = todoItem.isDone,
+                    CreationDate = todoItem.CreationDate,
+                    Description = todoItem.Description,
+                }
+                ;
+                toDo.Add(tododto);
+            }
+
+
+            //if (todoItems == null || todoItems.Count == 0)
+            //{
+            //    return NotFound(new { success = false, message = "No items are here." });
+            //}
+
+            return Ok(toDo);
+        }
+        #endregion
+
+        #region Add item
+        [Authorize(Roles = "Student")]
+        [HttpPost("Add-new-todo")]
+        public async Task<IActionResult> AddItem([FromBody] ToDoDto itemFromUser)
+        {
+            var userId = User.FindFirstValue("AppicationUserId");
+            var user = await GetUserByIdAsync(userId);
+
+            if (user == null)
+            {
+                return NotFound(new { success = false, message = "User not found" });
+            }
 
             if (itemFromUser == null)
             {
-                return BadRequest(new { success=false,message= "Item couldn't be null " });
+                return BadRequest(new { success = false, message = "Item couldn't be null" });
             }
 
             if (ModelState.IsValid)
             {
-                var user = await _context.Users.FindAsync(userId);
-                if (user == null)
-                {
-                    return NotFound(new { success=false ,message= "User not found" });
-                }
-
                 var todoItem = new TodoItems
                 {
-                    Title = itemFromUser.Title,
+                    Title = itemFromUser.title,
                     Description = itemFromUser.Description,
                     CreationDate = itemFromUser.CreationDate,
-                    isDone = itemFromUser.isDone,
+                    isDone = false,
                     ApplicationUserId = userId
                 };
 
                 _context.TodoItems.Add(todoItem);
                 await _context.SaveChangesAsync();
-                return Ok(new {success=true ,message="Item added to the User Successfully"});
+                return Ok(new { success = true, ItemId = todoItem.Id });
             }
 
             return BadRequest(new { success = false, message = "Item couldn't be added." });
         }
+        #endregion
 
-        [HttpDelete("Delete/{todoId}/{userId}")]
-        public async Task<IActionResult> DeleteItem(int todoId, string userId)
+        // check validated id 
+        #region delete item
+        [Authorize(Roles = "Student")]
+        [HttpDelete("Delete/{todoId}")]
+        public async Task<IActionResult> DeleteItem(int todoId)
         {
+            var userId = User.FindFirstValue("AppicationUserId");
+            var user = await GetUserByIdAsync(userId);
 
-            var checkuser = User.FindFirstValue(userId);
-            var UserChecked = await _userManager.FindByIdAsync(userId);
-            if (UserChecked == null)
+            if (user == null)
             {
-                return NotFound(new {success=false ,message="User not found dummy"});
+                return NotFound(new { success = false, message = "User not found" });
             }
 
-            
             if (ModelState.IsValid)
             {
-                var user = await _context.Users.FindAsync(userId);
-                if (user == null)
-                {
-                    return BadRequest(new { success = false, message = "User was not found." });
-                }
-
                 var todoItem = await _context.TodoItems
                     .FirstOrDefaultAsync(td => td.Id == todoId && td.ApplicationUserId == userId);
 
@@ -118,58 +141,75 @@ namespace Edu_plat.Controllers
 
             return BadRequest(new { success = false, message = "Item was not deleted." });
         }
+        #endregion
 
-        [HttpGet("sort-by-date/{userId}")]
-        public async Task<IActionResult> SortedItems(string userId)
+        #region stored
+        [Authorize(Roles = "Student")]
+        [HttpGet("sort-by-date")]
+        public async Task<IActionResult> SortedItems()
         {
+            var userId = User.FindFirstValue("AppicationUserId");
+            var user = await GetUserByIdAsync(userId);
 
-            var checkuser = User.FindFirstValue(userId);
-            var UserChecked = await _userManager.FindByIdAsync(userId);
-            if (UserChecked == null)
+            if (user == null)
             {
                 return NotFound(new { success = false, message = "User not found" });
             }
 
             if (ModelState.IsValid)
             {
-                var user = await _context.Users.Include(u => u.todoItems)
-                    .FirstOrDefaultAsync(u => u.Id == userId);
+                var sortedItems = await _context.TodoItems
+                    .Where(td => td.ApplicationUserId == userId)
+                    .OrderByDescending(td => td.CreationDate)
+                    .ToListAsync();
 
-                if (user == null)
+                if (sortedItems == null || sortedItems.Count == 0)
                 {
-                    return BadRequest(new { success = false, message = "User not found or wrong todoItem id." });
+                    return BadRequest(new { success = false, message = "No items found." });
                 }
-
-                var sortedItems = user.todoItems.OrderByDescending(td => td.CreationDate).ToList();
 
                 return Ok(sortedItems);
             }
+
             return BadRequest(new { success = false, message = "No items found." });
         }
+        #endregion
 
+        #region update 
+
+        [Authorize(Roles = "Student")]
         [HttpPut("Update/{id}")]
-        public async Task<IActionResult> UpdateItem(int id, [FromBody] TodoItems updatedItem)
+        public async Task<IActionResult> UpdateItem(int id, [FromBody] ToDoConfirm toDoConfirm)
         {
-            if (updatedItem == null)
+            var userId = User.FindFirstValue("AppicationUserId");
+            var user = await GetUserByIdAsync(userId);
+
+            if (user == null)
+            {
+                return NotFound(new { success = false, message = "User not found" });
+            }
+
+            if (toDoConfirm == null)
             {
                 return BadRequest(new { success = false, message = "Item cannot be null." });
             }
 
-            var todoItem = await _context.TodoItems.FindAsync(id);
+            var todoItem = await _context.TodoItems
+                .FirstOrDefaultAsync(td => td.Id == id && td.ApplicationUserId == userId);
+
             if (todoItem == null)
             {
                 return NotFound(new { success = false, message = "Item was not found" });
             }
 
-            todoItem.Title = updatedItem.Title;
-            todoItem.Description = updatedItem.Description;
-            todoItem.CreationDate = updatedItem.CreationDate;
-            todoItem.isDone = updatedItem.isDone;
+
+            todoItem.isDone = toDoConfirm.IsDone;
 
             _context.TodoItems.Update(todoItem);
             await _context.SaveChangesAsync();
 
             return Ok(new { success = true, message = "Item updated successfully." });
-        }
+        } 
+        #endregion
     }
 }

@@ -8,6 +8,7 @@ using Edu_plat.Model.Course_registeration;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata.Ecma335;
 using System.Security.Claims;
+using Edu_plat.DTO.Course_Registration;
 
 namespace Edu_plat.Controllers
 {
@@ -17,18 +18,19 @@ namespace Edu_plat.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        
+
         #region Dependence Injection
         public CourseController(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
             _userManager = userManager;
             _context = context;
-        } 
+        }
         #endregion
 
         #region Adding Course [Admin-only]
 
         [HttpPost("Add-course")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddCourse([FromBody] Course courseFromBody)
         {
             if (!ModelState.IsValid)
@@ -57,6 +59,7 @@ namespace Edu_plat.Controllers
         #region Getting-all-courses [Admin-only]
 
         [HttpGet("Get-all-courses")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllCourses()
         {
             var AllCourses = await _context.Courses.ToListAsync();
@@ -68,30 +71,31 @@ namespace Edu_plat.Controllers
         #region Getting-courses-by-semster
 
         [HttpGet("Courses-semster/{sem}")]
+        [Authorize(Roles = "Doctor")]
         public async Task<IActionResult> CoursesBySemster(int sem)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(new { success = false, message = "no semster" });
             }
             var courseBySemster = await _context.Courses.Where(x => x.Course_semster == sem && x.isRegistered == false).ToListAsync();
 
-            var Level1_Courses = courseBySemster.Where(x => x.Course_level == 1).Select(x =>new { x.CourseCode, x.CourseDescription });
-            var Level2_Courses = courseBySemster.Where(x => x.Course_level == 2).Select(x=> new { x.CourseCode, x.CourseDescription });
-            var Level3_Courses = courseBySemster.Where(x => x.Course_level == 3).Select(x=>x.CourseCode);
-            var Level4_Courses = courseBySemster.Where(x => x.Course_level == 4).Select(x=>x.CourseCode);
-            
-            
-            var SemesterResponse = new 
+            var Level1_Courses = courseBySemster.Where(x => x.Course_level == 1).Select(x => new { x.CourseCode, x.CourseDescription });
+            var Level2_Courses = courseBySemster.Where(x => x.Course_level == 2).Select(x => new { x.CourseCode, x.CourseDescription });
+            var Level3_Courses = courseBySemster.Where(x => x.Course_level == 3).Select(x => new { x.CourseCode, x.CourseDescription });
+            var Level4_Courses = courseBySemster.Where(x => x.Course_level == 4).Select(x => new { x.CourseCode, x.CourseDescription });
+
+
+            var SemesterResponse = new
             {
-                SmesterId= sem,
-                SemesterLevels =new List<object>
+                SmesterId = sem,
+                SemesterLevels = new List<object>
                 {
                     new { LevelId=1 , Level1_Courses },
                     new { LevelId=2 , Level2_Courses },
                     new { LevelId=3 , Level3_Courses },
                     new { LevelId=4 , Level4_Courses },
-
 
                 }
 
@@ -109,6 +113,12 @@ namespace Edu_plat.Controllers
         [HttpGet("Courses-level/{level}")]
         public async Task<IActionResult> CoursesByLevel(int level)
         {
+            int[] validLevels = { 1, 2, 3, 4 };
+            var levelindex = validLevels.Where(x => x == level);
+            if (!levelindex.Any())
+            {
+                return BadRequest(new { success = false, message = "Invalid Level" });
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(new { success = false, message = "no level" });
@@ -126,6 +136,18 @@ namespace Edu_plat.Controllers
         [HttpGet("Courses-level/{level}/{semester}")]
         public async Task<IActionResult> CoursesBySemLevel(int level, int semester)
         {
+            int[] validLevels = { 1, 2, 3, 4 };
+            var levelindex = validLevels.Where(x => x == level);
+            if (!levelindex.Any())
+            {
+                return BadRequest(new { success = false, message = "Invalid Level" });
+            }
+
+            if (semester != 1 || semester != 2)
+            {
+                return BadRequest(new { success = false, message = "Invalid Semester" });
+            }
+            
             var coursesBySemesterAndLevel = await _context.Courses
                 .Where(x => x.Course_level == level && x.Course_semster == semester && x.isRegistered == false)
                 .ToListAsync();
@@ -137,9 +159,9 @@ namespace Edu_plat.Controllers
         #endregion
 
         #region Doctor-course-Registration [Doctor-only]
-        [HttpPost("Add-Doctor-Course/{course_id}")]
+        [HttpPost("Add-Doctor-Course")]
         [Authorize(Roles = "Doctor")]
-        public async Task<IActionResult> CouresRegister(int course_id)
+        public async Task<IActionResult> CouresRegister(CourseRegistrationDto courseRegistrationDto)
         {
             var userId = User.FindFirstValue("AppicationUserId");
             var user = await _userManager.FindByIdAsync(userId);
@@ -147,26 +169,43 @@ namespace Edu_plat.Controllers
             {
                 return NotFound(new { success = false, message = "user not found" });
             }
-            else
-            {
-                var course_required = await _context.Courses.FindAsync(course_id);
-                if (course_required == null)
-                {
-                    return NotFound(new { success = false, message = "No course was found" });
-                }
-                else
-                {
-                    course_required.ApplicationUserId = userId;
-                    course_required.isRegistered = true;
-                    _context.Courses.Update(course_required);
-                    await _context.SaveChangesAsync();
-                    return Ok(new { success = true, message = "course registered sucessfully" });
-                }
+
+            if (courseRegistrationDto.CoursesCodes == null) {
+
+                return BadRequest(new { success = false, message = "Course List empty" });
             }
+                List<string>successCourses = new List<string>();
+                List<string>FailureCourses =  new List<string>();
+            foreach(string courseCode in courseRegistrationDto.CoursesCodes)
+            {
+                
+                //check iff the sent course is registered
+                var Course= _context.Courses.FirstOrDefault(x=>x.CourseCode == courseCode);
+                
+                if (Course == null || Course.isRegistered==true)
+                {
+                    FailureCourses.Add(courseCode);
+                }
+                if (FailureCourses.Count > 0)
+                {
+                    return BadRequest(new { success = false, message = "Couldn't register" });
+                }
+                else 
+                {
+                   
+                    Course.ApplicationUserId=userId;
+                    Course.isRegistered=true;
+                    _context.Courses.Update(Course);    
+                    successCourses.Add(courseCode);
+                }
+
+                
+            }
+                await _context.SaveChangesAsync();
+
+                return Ok(new { success=true,message="courses registered successfully"});
+            
         }
-
-
-
 
         #endregion
 
@@ -192,10 +231,6 @@ namespace Edu_plat.Controllers
                 return BadRequest(new { success = false, message = "No courses are registered to you" });
 
             }
-
-
-
-
         }
         #endregion
 
@@ -203,14 +238,15 @@ namespace Edu_plat.Controllers
 
         
         [Authorize(Roles = "Doctor")]
-        [HttpDelete("Delete-Course/{course_id}")]
-        public async Task<IActionResult> DeleteCourse(int course_id)
+        [HttpDelete("Delete-Course")]
+        public async Task<IActionResult> DeleteCourse([FromBody]CourseDeletion courseDeletion)
         {
-            if (course_id == 0)
+            if (courseDeletion.CourseCode == null)
             {
-                return BadRequest(new { success = false, message = "invalid course Id" });
+                return BadRequest(new { success = false, message = "invalid course Code" });
             }
 
+            //check iff the sent course is registered to delete and any user cannot delete to another doctor
             var userId = User.FindFirstValue("AppicationUserId");
             var user = await _userManager.FindByIdAsync(userId);
 
@@ -220,15 +256,18 @@ namespace Edu_plat.Controllers
             }
             else
             {
-                var course_required = _context.Courses.Find(course_id);
+                var course_required = _context.Courses.FirstOrDefault(x=>x.CourseCode==courseDeletion.CourseCode && x.ApplicationUserId==userId);
                 if (course_required == null)
                 {
-
                     return NotFound(new { success = false, message = "No Course found" });
                 }
 
                 else
                 {
+                    if (course_required.isRegistered = false || course_required.ApplicationUserId == null) {
+                        return NotFound(new { success = false, message = "Can not delete Course already deleted" });
+                    }
+
                     course_required.ApplicationUserId = null;
                     course_required.isRegistered = false;
                     _context.Courses.Update(course_required);

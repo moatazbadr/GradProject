@@ -3,6 +3,7 @@ using JWT.Model.Settings;
 using JWT.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -26,66 +27,79 @@ namespace JWT
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+          
             // Role Seeding (Admin Role)
             builder.Services.AddScoped<RoleManager<IdentityRole>>();
 
             // DbContext
+            #region Connection string
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-            });
+                {
+                    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+                }); 
+            #endregion
+
 
             // Identity
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => { })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            #region UserName handling
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ ";
+            })
+                  .AddEntityFrameworkStores<ApplicationDbContext>()
+                  .AddDefaultTokenProviders(); 
+            #endregion
 
             // Send Email
+            #region Send Email
             builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
-            builder.Services.AddTransient<IMailingServices, MailingService>();
+            builder.Services.AddTransient<IMailingServices, MailingService>(); 
+            #endregion
 
             // Session
+            #region Session handling
             builder.Services.AddDistributedMemoryCache();
             builder.Services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
-            });
+            }); 
+            #endregion
 
             // CORS
+            #region Adjusting Cors
             builder.Services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(builder =>
-                {
-                    builder.AllowAnyOrigin() // Specify your frontend URL
-                           .AllowAnyHeader()
-                           .AllowAnyMethod()
-                           
-                           ;
-                          
-                });
-            });
-
+               {
+                   options.AddDefaultPolicy(builder =>
+                   {
+                       builder.AllowAnyOrigin() // Specify your frontend URL
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                   });
+               }); 
+            #endregion
             // JWT
+            #region JWT specifications
             builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.SaveToken = true;
-                options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuer = true,
-                    ValidIssuer = builder.Configuration["JWT:IssuerIP"],
-                    ValidateAudience = true,
-                    ValidAudience = builder.Configuration["JWT:AudienceIP"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecretKey"]))
-                };
-            });
+               {
+                   options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                   options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+               })
+               .AddJwtBearer(options =>
+               {
+                   options.SaveToken = true;
+                   options.RequireHttpsMetadata = false;
+                   options.TokenValidationParameters = new TokenValidationParameters()
+                   {
+                       ValidateIssuer = true,
+                       ValidIssuer = builder.Configuration["JWT:IssuerIP"],
+                       ValidateAudience = true,
+                       ValidAudience = builder.Configuration["JWT:AudienceIP"],
+                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecretKey"]))
+                   };
+               }); 
+            #endregion
 
             #region Swagger Setting
             builder.Services.AddSwaggerGen(swagger =>
@@ -127,6 +141,7 @@ namespace JWT
             });
             #endregion
 
+            #region Roles For users
             // Build application
             var app = builder.Build();
 
@@ -162,7 +177,10 @@ namespace JWT
                         await userManager.AddToRoleAsync(adminUser, "Admin");
                     }
                 }
-            }
+            } 
+            #endregion
+         
+
 
             // Configure the HTTP request pipeline.
             app.UseSwagger();
