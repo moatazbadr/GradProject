@@ -163,7 +163,7 @@
     "Parameters": [
       {
         "Name": "courseFromBody",
-        "Type": "Edu_plat.Model.Course_registeration.Course",
+        "Type": "Edu_plat.DTO.Course_Registration.CourseRegisteration",
         "IsRequired": true
       }
     ],

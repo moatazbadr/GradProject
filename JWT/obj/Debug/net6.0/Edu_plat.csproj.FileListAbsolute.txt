@@ -650,7 +650,6 @@ C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\Edu_
 C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\Edu_plat.runtimeconfig.json
 C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\Edu_plat.dll
 C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\Edu_plat.pdb
-C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\BCrypt.Net-Next.dll
 C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
 C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\Humanizer.dll
 C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\MailKit.dll
@@ -725,3 +724,13 @@ C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\obj\Debug\net6.0\refi
 C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\obj\Debug\net6.0\Edu_plat.pdb
 C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\obj\Debug\net6.0\Edu_plat.genruntimeconfig.cache
 C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\obj\Debug\net6.0\ref\Edu_plat.dll
+C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\System.Collections.Immutable.dll
+C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+C:\Users\moataz\Desktop\GradProject\Moataz\GradProject\JWT\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll

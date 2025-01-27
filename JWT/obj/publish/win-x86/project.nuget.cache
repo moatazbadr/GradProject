@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "SOKT46vaY8c=",
+  "dgSpecHash": "q1j9RANrbRo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\moataz\\Desktop\\API\\EduPaltLastVersion\\Edu_plat\\Edu_plat\\JWT\\JWT\\JWT\\Edu_plat.csproj",
+  "projectFilePath": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Edu_plat.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\moataz\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\moataz\\.nuget\\packages\\bouncycastle.cryptography\\2.4.0\\bouncycastle.cryptography.2.4.0.nupkg.sha512",
     "C:\\Users\\moataz\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\moataz\\.nuget\\packages\\mailkit\\4.8.0\\mailkit.4.8.0.nupkg.sha512",
@@ -63,10 +64,7 @@
     "C:\\Users\\moataz\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
     "C:\\Users\\moataz\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\moataz\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
-    "C:\\Users\\moataz\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
-    "C:\\Users\\moataz\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\6.0.35\\microsoft.netcore.app.runtime.win-x86.6.0.35.nupkg.sha512",
-    "C:\\Users\\moataz\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x86\\6.0.35\\microsoft.windowsdesktop.app.runtime.win-x86.6.0.35.nupkg.sha512",
-    "C:\\Users\\moataz\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\6.0.35\\microsoft.aspnetcore.app.runtime.win-x86.6.0.35.nupkg.sha512"
+    "C:\\Users\\moataz\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }

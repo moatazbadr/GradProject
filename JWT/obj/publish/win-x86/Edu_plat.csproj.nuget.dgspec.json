@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\moataz\\Desktop\\API\\EduPaltLastVersion\\Edu_plat\\Edu_plat\\JWT\\JWT\\JWT\\Edu_plat.csproj": {}
+    "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Edu_plat.csproj": {}
   },
   "projects": {
-    "C:\\Users\\moataz\\Desktop\\API\\EduPaltLastVersion\\Edu_plat\\Edu_plat\\JWT\\JWT\\JWT\\Edu_plat.csproj": {
+    "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Edu_plat.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\moataz\\Desktop\\API\\EduPaltLastVersion\\Edu_plat\\Edu_plat\\JWT\\JWT\\JWT\\Edu_plat.csproj",
+        "projectUniqueName": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Edu_plat.csproj",
         "projectName": "Edu_plat",
-        "projectPath": "C:\\Users\\moataz\\Desktop\\API\\EduPaltLastVersion\\Edu_plat\\Edu_plat\\JWT\\JWT\\JWT\\Edu_plat.csproj",
+        "projectPath": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Edu_plat.csproj",
         "packagesPath": "C:\\Users\\moataz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\moataz\\Desktop\\API\\EduPaltLastVersion\\Edu_plat\\Edu_plat\\JWT\\JWT\\JWT\\obj\\publish\\win-x86\\",
+        "outputPath": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\obj\\publish\\win-x86\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\moataz\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,6 +46,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
             "MailKit": {
               "target": "Package",
               "version": "[4.8.0, )"
@@ -94,20 +98,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Runtime.win-x86",
-              "version": "[6.0.35, 6.0.35]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Runtime.win-x86",
-              "version": "[6.0.35, 6.0.35]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x86",
-              "version": "[6.0.35, 6.0.35]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"

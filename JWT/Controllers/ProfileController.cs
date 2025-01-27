@@ -31,7 +31,7 @@ namespace Edu_plat.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return NotFound(new { success = false, message = "User not found" });
+                return Ok(new { success = false, message = "User not found" });
             }
 
             var userProfile = new
@@ -56,7 +56,7 @@ namespace Edu_plat.Controllers
                 var user = await _userManager.FindByIdAsync(userId);
                 if (user == null)
                 {
-                    return NotFound(new { success = false, message = "User not Found" });
+                    return Ok(new { success = false, message = "User not Found" });
                 }
                 var result = await _userManager.ChangePasswordAsync(user, passwordDto.CurrentPassword, passwordDto.NewPassword);
                 if (result.Succeeded)
@@ -68,7 +68,7 @@ namespace Edu_plat.Controllers
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-            return BadRequest(ModelState);
+            return Ok(new { success=false ,message= "Model state is invalid"});
 
         }
         #endregion
@@ -82,18 +82,18 @@ namespace Edu_plat.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return NotFound(new { success = false, message = "User not found" });
+                return Ok(new { success = false, message = "User not found" });
             }
 
             if (profilePicDto.profilePicturee == null)
             {
-                return BadRequest(new { success = false, message = "No file uploaded." });
+                return Ok(new { success = false, message = "No file uploaded." });
             }
 
             // Validate file size (max 2 MB)
             if (profilePicDto.profilePicturee.Length > 2 * 1024 * 1024)
             {
-                return BadRequest(new { success = false, message = "File size exceeds the limit of 2MB." });
+                return Ok(new { success = false, message = "File size exceeds the limit of 2MB." });
             }
 
             // Validate file extension (only jpeg, jpg, png)
@@ -101,7 +101,7 @@ namespace Edu_plat.Controllers
             var allowedExtensions = new[] { ".jpeg", ".jpg", ".png" };
             if (!allowedExtensions.Contains(fileExtension))
             {
-                return BadRequest(new { success = false, message = "Invalid file type. Only JPG, JPEG, and PNG files are allowed." });
+                return Ok(new { success = false, message = "Invalid file type. Only JPG, JPEG, and PNG files are allowed." });
             }
 
             using var dataStream = new MemoryStream();
@@ -118,7 +118,7 @@ namespace Edu_plat.Controllers
             {
                 ModelState.AddModelError("", error.Description);
             }
-            return BadRequest(ModelState);
+            return Ok(new { success = false, message = "Model state is invalid" });
         } 
         #endregion
 
@@ -134,7 +134,7 @@ namespace Edu_plat.Controllers
                 var user = await _userManager.FindByIdAsync(userId);
                 if (user == null)
                 {
-                    return NotFound(new { success = false, message = "User not found" });
+                    return Ok(new { success = false, message = "User not found" });
                 }
 
                 user.PhoneNumber = phoneNumberUpdateDto.NewphoneNumber;
@@ -149,7 +149,7 @@ namespace Edu_plat.Controllers
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-            return BadRequest(ModelState);
+            return Ok(new { success=false ,messsage="Model state is invalid"});
         }
 
         #endregion
@@ -183,12 +183,12 @@ namespace Edu_plat.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return NotFound(new { success = false, message = "User not found" });
+                return Ok(new { success = false, message = "User not found" });
             }
             if (user.PhoneNumber==null || user.PhoneNumber.Length==0) {
                 return Ok(new { phoneNumber=user.PhoneNumber});
             }
-            return Ok(new { success = true, phoneNumber = user.PhoneNumber });
+            return Ok(new {  phoneNumber = user.PhoneNumber });
         } 
         #endregion
     }

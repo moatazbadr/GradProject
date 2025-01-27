@@ -59,11 +59,11 @@ namespace JWT.Controllers
         {
             // check all Data Entire is True or False 
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+                return Ok(new {success=false ,message="Invalid inputs" });
             // cjeck exmail Exist or Not if exist not can Register the same Email  
             var existingUser = await _userManager.Users.AnyAsync(u => u.Email == dto.Email);
             if (existingUser)
-                return BadRequest(new { success = false, message = "Email Or password invalid" });
+                return Ok(new { success = false, message = "Email Or password invalid" });
 
             // check Email store in TemporaryUser or Not 
             var existingTempUser = await _context.TemporaryUsers
@@ -166,16 +166,16 @@ namespace JWT.Controllers
             // check otp 
             var otpRecord = await _context.OtpVerification.FirstOrDefaultAsync(o => o.Otp == dto.Otp);
             if (otpRecord == null)
-                return BadRequest(new { success = false, message = "Invalid OTP." });
+                return Ok(new { success = false, message = "Invalid OTP." });
 
             // check expire Time 
             if (DateTime.UtcNow > otpRecord.ExpirationTime)
-                return BadRequest(new { success = false, message = "OTP has expired." });
+                return Ok(new { success = false, message = "OTP has expired." });
 
             // find tempUser 
             var tempUser = await _context.TemporaryUsers.FirstOrDefaultAsync(u => u.Email == otpRecord.Email);
             if (tempUser == null)
-                return BadRequest(new { success = false, message = "Incorrect Email" });
+                return Ok(new { success = false, message = "Incorrect Email" });
 
             // delete otp 
             _context.OtpVerification.Remove(otpRecord);
@@ -192,7 +192,7 @@ namespace JWT.Controllers
 
             var result = await _userManager.CreateAsync(newUser, tempUser.PasswordHash);
             if (!result.Succeeded)
-                return BadRequest(result.Errors.ToList());
+                return Ok(new { success = false,message =" Failed to create User " });
             if (result.Succeeded)
             {
                 newUser.EmailConfirmed = true;
@@ -222,7 +222,7 @@ namespace JWT.Controllers
 
         #region Login
 
-        [HttpPost("Login")]
+        [HttpPost("Login")]     
 
         public async Task<IActionResult> Login([FromBody] LoginUserDTO dto)
         {
@@ -232,7 +232,7 @@ namespace JWT.Controllers
 
                 var account = await _userManager.FindByEmailAsync(dto.email);
                 if (account == null)
-                    return BadRequest(new { success = false, message = "Invalid password or email " });
+                    return Ok(new { success = false, message = "Invalid password or email" });
 
 
                 var checkPass = await _userManager.CheckPasswordAsync(account, dto.Password);
@@ -276,11 +276,11 @@ namespace JWT.Controllers
                 else
                 {
 
-                    return BadRequest(new { success = false, message = "Email or Password inValid" });
+                    return Ok(new { success = false, message = "Email or Password inValid" });
                 }
             }
             else
-                return BadRequest(new { success = false, message = "Invalid Input Data" });
+                return Ok(new { success = false, message = "Invalid Input Data" });
         }
         #endregion
 
@@ -293,7 +293,7 @@ namespace JWT.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Ok(new { success = false,message="Model state is invalid" });
             }
 
             var admin = new ApplicationUser
@@ -320,7 +320,7 @@ namespace JWT.Controllers
                 ModelState.AddModelError(string.Empty, error.Description);
             }
 
-            return BadRequest(ModelState);
+            return Ok(new { success=false ,message="model state is invalid"});
         }
         #endregion
 
@@ -332,7 +332,7 @@ namespace JWT.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Ok(new {success=false,message="Model state is invalid"});
             }
 
             var doctor = new ApplicationUser
@@ -366,10 +366,10 @@ namespace JWT.Controllers
                 var roleResult = await _userManager.AddToRoleAsync(doctor, "Doctor");
                 if (!roleResult.Succeeded)
                 {
-                    return StatusCode(500, "Failed to assign Doctor role.");
+                    return Ok(new { success = false, message = "Failed to assign Doctor role." });
                 }
 
-                return Ok(new { Message = "Doctor registered successfully." });
+                return Ok(new {success=true , Message = "Doctor registered successfully." });
             }
 
             foreach (var error in result.Errors)
@@ -377,7 +377,7 @@ namespace JWT.Controllers
                 ModelState.AddModelError(string.Empty, error.Description);
             }
 
-            return BadRequest(ModelState);
+            return Ok(new { success=false ,message="failed"});
         }
 
 
@@ -398,7 +398,7 @@ namespace JWT.Controllers
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequestDTO model)
         {
             if (!ModelState.IsValid)
-                return BadRequest(new { success = false, message = "Invalid request." });
+                return Ok(new { success = false, message = "Invalid request." });
 
             // Removing OTP from the registery
             var existingOtps = _context.OtpVerification
@@ -408,7 +408,7 @@ namespace JWT.Controllers
             // checking if the user exist
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
-                return BadRequest(new { success = false, message = "Incorrect Email" });
+                return Ok(new { success = false, message = "Incorrect Email" });
 
             // Creating new OTP
             string otp = GenerateOTP.GenerateOtp();
@@ -449,16 +449,16 @@ namespace JWT.Controllers
         public async Task<IActionResult> ValidateOtp([FromBody] VerifyOtpDTO model)
         {
             if (!ModelState.IsValid)
-                return BadRequest(new { success = false, message = "Invalid request." });
+                return Ok(new { success = false, message = "Invalid request." });
 
             var otpRecord = await _context.OtpVerification
                 .FirstOrDefaultAsync(o => o.Otp == model.Otp && o.Purpose == "ResetPassword");
 
             if (otpRecord == null)
-                return BadRequest(new { success = false, message = "Invalid OTP." });
+                return Ok(new { success = false, message = "Invalid OTP." });
 
             if (DateTime.UtcNow > otpRecord.ExpirationTime)
-                return BadRequest(new { success = false, message = "OTP has expired." });
+                return Ok(new { success = false, message = "OTP has expired." });
 
             // change the status of the otp
             otpRecord.IsVerified = true;
@@ -474,19 +474,19 @@ namespace JWT.Controllers
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequestDTO model)
         {
             if (!ModelState.IsValid)
-                return BadRequest(new { success = false, message = "Invalid request." });
+                return Ok(new { success = false, message = "Invalid request." });
 
             // Retrieve the verified OTP record
             var otpRecord = await _context.OtpVerification
                 .FirstOrDefaultAsync(o => o.IsVerified == true && o.Purpose == "ResetPassword");
 
             if (otpRecord == null)
-                return BadRequest(new { success = false, message = "Unauthorized or expired request." });
+                return Ok(new { success = false, message = "Unauthorized or expired request." });
 
             // Retrieve the user by email
             var user = await _userManager.FindByEmailAsync(otpRecord.Email);
             if (user == null)
-                return BadRequest(new { success = false, message = "Password or email is invalid" });
+                return Ok(new { success = false, message = "Password or email is invalid" });
 
             // Generate a password reset token
             string passwordResetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
@@ -494,7 +494,7 @@ namespace JWT.Controllers
             // Reset the user's password
             var resetResult = await _userManager.ResetPasswordAsync(user, passwordResetToken, model.NewPassword);
             if (!resetResult.Succeeded)
-                return BadRequest(new { success = false, message = "Password reset failed." });
+                return Ok(new { success = false, message = "Password reset failed." });
 
             // Remove the OTP record after successful reset
             _context.OtpVerification.Remove(otpRecord);

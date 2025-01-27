@@ -64,8 +64,15 @@ namespace JWT
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
-            }); 
+            });
             #endregion
+            builder.WebHost.ConfigureKestrel(options =>
+            {
+                options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(5);
+                options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(5);
+
+            });
+
 
             // CORS
             #region Adjusting Cors

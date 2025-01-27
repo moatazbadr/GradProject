@@ -31,11 +31,11 @@ namespace Edu_plat.Controllers
 
         [HttpPost("Add-course")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddCourse([FromBody] Course courseFromBody)
+        public async Task<IActionResult> AddCourse([FromBody] CourseRegisteration courseFromBody)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new { success = false, message = "Error adding course" });
+                return Ok(new { success = false, message = "Error adding course" });
             }
             var course = new Course()
             {
@@ -77,7 +77,7 @@ namespace Edu_plat.Controllers
 
             if (!ModelState.IsValid)
             {
-                return BadRequest(new { success = false, message = "no semster" });
+                return Ok(new { success = false, message = "no semster" });
             }
             var courseBySemster = await _context.Courses.Where(x => x.Course_semster == sem && x.isRegistered == false).ToListAsync();
 
@@ -117,11 +117,11 @@ namespace Edu_plat.Controllers
             var levelindex = validLevels.Where(x => x == level);
             if (!levelindex.Any())
             {
-                return BadRequest(new { success = false, message = "Invalid Level" });
+                return Ok(new { success = false, message = "Invalid Level" });
             }
             if (!ModelState.IsValid)
             {
-                return BadRequest(new { success = false, message = "no level" });
+                return Ok(new { success = false, message = "no level" });
             }
             var courseBylevel = await _context.Courses.Where(x => x.Course_level == level && x.isRegistered == false).ToListAsync();
 
@@ -140,12 +140,12 @@ namespace Edu_plat.Controllers
             var levelindex = validLevels.Where(x => x == level);
             if (!levelindex.Any())
             {
-                return BadRequest(new { success = false, message = "Invalid Level" });
+                return Ok(new { success = false, message = "Invalid Level" });
             }
 
             if (semester != 1 || semester != 2)
             {
-                return BadRequest(new { success = false, message = "Invalid Semester" });
+                return Ok(new { success = false, message = "Invalid Semester" });
             }
             
             var coursesBySemesterAndLevel = await _context.Courses
@@ -167,12 +167,12 @@ namespace Edu_plat.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return NotFound(new { success = false, message = "user not found" });
+                return Ok(new { success = false, message = "user not found" });
             }
 
             if (courseRegistrationDto.CoursesCodes == null) {
 
-                return BadRequest(new { success = false, message = "Course List empty" });
+                return Ok(new { success = false, message = "Course List empty" });
             }
                 List<string>successCourses = new List<string>();
                 List<string>FailureCourses =  new List<string>();
@@ -188,7 +188,7 @@ namespace Edu_plat.Controllers
                 }
                 if (FailureCourses.Count > 0)
                 {
-                    return BadRequest(new { success = false, message = "Couldn't register" });
+                    return Ok(new { success = false, message = "Couldn't register" });
                 }
                 else 
                 {
@@ -218,17 +218,23 @@ namespace Edu_plat.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return NotFound(new { success = false, message = "user not found" });
+                return Ok(new { success = false, message = "user not found" });
             }
             else
             {
                 if (_context.Courses != null)
                 {
                     var courses = await _context.Courses.Where(c => c.ApplicationUserId == userId).ToListAsync();
-                    return Ok(courses);
+                   // return Ok(courses);
+                   List<string>Course =new List<string>();
+                    foreach (var course in courses) {
+                        Course.Add(course.CourseCode);
+                    }
+                    return Ok(Course);
+
                 }
 
-                return BadRequest(new { success = false, message = "No courses are registered to you" });
+                return Ok(new { success = false, message = "No courses are registered to you" });
 
             }
         }
@@ -243,7 +249,7 @@ namespace Edu_plat.Controllers
         {
             if (courseDeletion.CourseCode == null)
             {
-                return BadRequest(new { success = false, message = "invalid course Code" });
+                return Ok(new { success = false, message = "invalid course Code" });
             }
 
             //check iff the sent course is registered to delete and any user cannot delete to another doctor
@@ -252,20 +258,20 @@ namespace Edu_plat.Controllers
 
             if (user == null)
             {
-                return NotFound(new { success = false, message = "No doctor found" });
+                return Ok(new { success = false, message = "No doctor found" });
             }
             else
             {
                 var course_required = _context.Courses.FirstOrDefault(x=>x.CourseCode==courseDeletion.CourseCode && x.ApplicationUserId==userId);
                 if (course_required == null)
                 {
-                    return NotFound(new { success = false, message = "No Course found" });
+                    return Ok(new { success = false, message = "No Course found" });
                 }
 
                 else
                 {
                     if (course_required.isRegistered = false || course_required.ApplicationUserId == null) {
-                        return NotFound(new { success = false, message = "Can not delete Course already deleted" });
+                        return Ok(new { success = false, message = "Can not delete Course already deleted" });
                     }
 
                     course_required.ApplicationUserId = null;
