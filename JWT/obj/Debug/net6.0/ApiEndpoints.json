@@ -353,6 +353,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Edu_plat.Controllers.StudentCourseController",
+    "Method": "Register",
+    "RelativePath": "api/StudentCourse/Registers",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registrationDto",
+        "Type": "Edu_plat.DTO.Course_Registration.CourseRegistrationDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Edu_plat.Controllers.TodoController",
     "Method": "AddItem",
     "RelativePath": "api/Todo/Add-new-todo",

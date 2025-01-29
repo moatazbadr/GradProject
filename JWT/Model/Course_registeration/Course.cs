@@ -12,6 +12,9 @@
         public int Course_level { get; set; }
         public int Course_semster { get; set; }
 
+        //Navigational property for student many side 
+        public ICollection<Student> Students { get; set; } = new List<Student>();
+
         public Course()
         {
             isRegistered = false;

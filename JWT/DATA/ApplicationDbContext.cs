@@ -26,13 +26,15 @@ namespace JWT.DATA
 		
 			base.OnModelCreating(modelBuilder); 
         }
-		public DbSet<Student> Students { get; set; }
-       public DbSet<Doctor> Doctors {  get; set; } 
+        #region DbSets
+        public DbSet<Doctor> Doctors { get; set; }
 
         public DbSet<TodoItems> TodoItems { get; set; }
         public DbSet<OtpVerification> OtpVerification { get; set; }
         public DbSet<TemporaryUser> TemporaryUsers { get; set; }
-        public DbSet<Course> Courses { get; set; }
+        public DbSet<Course> Courses { get; set; } 
+        public DbSet<Student> Students { get; set; }
+        #endregion
 
     }
 }

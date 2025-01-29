@@ -158,7 +158,7 @@ namespace JWT
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-                var roles = new[] { "Admin", "Doctor", "Student" };
+                var roles = new[] { "Admin", "Doctor", "Student" ,"SuperAdmin"};
 
                 foreach (var role in roles)
                 {
@@ -181,7 +181,7 @@ namespace JWT
                     var result = await userManager.CreateAsync(adminUser, "Saleh@123!");
                     if (result.Succeeded)
                     {
-                        await userManager.AddToRoleAsync(adminUser, "Admin");
+                        await userManager.AddToRoleAsync(adminUser, "SuperAdmin");
                     }
                 }
             } 

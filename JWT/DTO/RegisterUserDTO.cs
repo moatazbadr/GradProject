@@ -13,8 +13,8 @@ namespace JWT.DTO
 
 		public string Email { get; set; }  // Email Must end @'sci.asu.edu.eg
 
-        [RegularExpression("^[A-Z](?=.[a-z])(?=.\\d)(?=.[@$!%?&#])[A-Za-z\\d@$!%*?&#]{7,19}$",
-		ErrorMessage = "Password must be 8-20 characters long, starting with an uppercase letter, and include at least one lowercase letter, one digit, and one special character.")]
+  //      [RegularExpression("^[A-Z](?=.[a-z])(?=.\\d)(?=.[@$!%?&#])[A-Za-z\\d@$!%*?&#]{7,19}$",
+		//ErrorMessage = "Password must be 8-20 characters long, starting with an uppercase letter, and include at least one lowercase letter, one digit, and one special character.")]
         public string Password { get; set; }  // with at least one uppercase letter, one lowercase letter, one digit, and one special character
 
 		[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]

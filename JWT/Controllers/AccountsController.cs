@@ -205,7 +205,14 @@ namespace JWT.Controllers
                     // If "Student" role doesn't exist, create it
                     await _roleManager.CreateAsync(new IdentityRole("Student"));
                 }
-
+                var StudentObj = new Student()
+                {
+                    UserId=newUser.Id,
+                    applicationUser=newUser,
+                    
+                };
+                _context.Set<Student>().Add(StudentObj);
+                _context.SaveChanges();
                 // Assign the "Student" role to the user
                 await _userManager.AddToRoleAsync(newUser, "Student");
 
@@ -288,7 +295,7 @@ namespace JWT.Controllers
 
         //// Admin registration (for demo purposes)
         [HttpPost("RegisterAdmin")]
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles= "SuperAdmin")]
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterUserDTO dto)
         {
             if (!ModelState.IsValid)
@@ -352,7 +359,7 @@ namespace JWT.Controllers
             {
                 UserId = userId, // Foreign key linking to ApplicationUser
                 applicationUser = doctor
-
+                
             };
 
             //check if the doctor already exists
