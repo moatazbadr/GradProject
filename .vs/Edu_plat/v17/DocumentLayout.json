@@ -66,8 +66,7 @@
               "RelativeToolTip": "JWT\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-01-28T19:41:52.313Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T19:41:52.313Z"
             },
             {
               "$type": "Document",
@@ -78,8 +77,7 @@
               "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Edu_plat.csproj",
               "RelativeToolTip": "JWT\\Edu_plat.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-01-28T19:41:50.526Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T19:41:50.526Z"
             },
             {
               "$type": "Document",
@@ -91,8 +89,7 @@
               "RelativeToolTip": "JWT\\appsettings.json",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAABYAAABRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-01-28T19:32:29.237Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T19:32:29.237Z"
             },
             {
               "$type": "Document",
@@ -104,8 +101,7 @@
               "RelativeToolTip": "JWT\\Controllers\\AccountsController.cs",
               "ViewState": "AgIAAOcAAAAAAAAAAAAAAOcAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T19:19:35.488Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T19:19:35.488Z"
             },
             {
               "$type": "Document",
@@ -117,8 +113,7 @@
               "RelativeToolTip": "JWT\\ApplicationUser.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAUwA0AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T19:18:14.214Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T19:18:14.214Z"
             },
             {
               "$type": "Document",
@@ -130,8 +125,7 @@
               "RelativeToolTip": "JWT\\Controllers\\CourseController.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAAQwKUAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T19:09:48.353Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T19:09:48.353Z"
             },
             {
               "$type": "Document",
@@ -141,7 +135,7 @@
               "RelativeDocumentMoniker": "JWT\\Controllers\\StudentCourseController.cs",
               "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Controllers\\StudentCourseController.cs",
               "RelativeToolTip": "JWT\\Controllers\\StudentCourseController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAArwBwAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAUwFEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-28T18:51:21.32Z",
               "EditorCaption": ""

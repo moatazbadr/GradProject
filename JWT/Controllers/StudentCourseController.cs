@@ -27,32 +27,28 @@ namespace Edu_plat.Controllers
         [Authorize(Roles ="Student")]
         public async Task<IActionResult> Register(CourseRegistrationDto registrationDto)
         {
-            try
-            {
-                // Get UserId from claims
+        
+               
                 var userId = User.FindFirstValue("AppicationUserId");
                 if (string.IsNullOrEmpty(userId))
                 {
                     return Ok(new { success = false, message = "Invalid Token: User not found" });
                 }
 
-                // Load student with courses (eager loading)
                 var student = await _context.Students
                     .Include(s => s.courses)
                     .FirstOrDefaultAsync(s => s.UserId == userId);
 
                 if (student == null)
                 {
-                    return NotFound(new { success = false, message = "Student not found" });
+                    return Ok(new { success = false, message = "Student not found" });
                 }
 
-                // Check if registrationDto contains course codes
                 if (registrationDto.CoursesCodes == null || !registrationDto.CoursesCodes.Any())
                 {
-                    return BadRequest(new { success = false, message = "Invalid Registration Data" });
+                    return Ok(new { success = false, message = "Invalid Registration Data" });
                 }
 
-                // Fetch courses to register
                 var coursesToRegister = await _context.Courses
                     .Where(c => registrationDto.CoursesCodes.Contains(c.CourseCode))
                     .ToListAsync();
@@ -76,11 +72,7 @@ namespace Edu_plat.Controllers
 
                 return Ok(new { success = true, message = "Course registration successful" });
             }
-            catch (Exception ex)
-            {
-                
-                return Ok( new { success = false, message = "Internal Server Error"});
-            }
+            
         }
 
 
@@ -88,4 +80,3 @@ namespace Edu_plat.Controllers
 
 
     }
-}
