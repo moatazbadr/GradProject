@@ -58,7 +58,6 @@ namespace Edu_plat.Controllers
                     return Ok(new { success = false, message = "No matching courses found" });
                 }
 
-                // Add courses to student, avoiding duplicates
                 foreach (var course in coursesToRegister)
                 {
                     if (!student.courses.Any(c => c.Id == course.Id))
@@ -67,7 +66,6 @@ namespace Edu_plat.Controllers
                     }
                 }
 
-                // Save changes to database
                 await _context.SaveChangesAsync();
 
                 return Ok(new { success = true, message = "Course registration successful" });
