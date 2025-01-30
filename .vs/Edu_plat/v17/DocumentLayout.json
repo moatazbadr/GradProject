@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\controllers\\studentcoursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\controllers\\studentcoursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\edu_plat.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\edu_plat.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|solutionrelative:jwt\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{59C0C43E-791F-4003-8860-9FC62FC3ECAC}|JWT\\Edu_plat.csproj|c:\\users\\moataz\\desktop\\gradproject\\moataz\\gradproject\\jwt\\controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,7 +58,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "JWT\\Properties\\launchSettings.json",
@@ -70,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Edu_plat",
               "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Edu_plat.csproj",
               "RelativeDocumentMoniker": "JWT\\Edu_plat.csproj",
@@ -81,15 +81,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\appsettings.json",
               "RelativeDocumentMoniker": "JWT\\appsettings.json",
               "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\appsettings.json",
               "RelativeToolTip": "JWT\\appsettings.json",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAABYAAABRAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAACwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-01-28T19:32:29.237Z"
+              "WhenOpened": "2025-01-28T19:32:29.237Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -117,7 +118,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "CourseController.cs",
               "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Controllers\\CourseController.cs",
               "RelativeDocumentMoniker": "JWT\\Controllers\\CourseController.cs",
@@ -129,13 +130,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "StudentCourseController.cs",
               "DocumentMoniker": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Controllers\\StudentCourseController.cs",
               "RelativeDocumentMoniker": "JWT\\Controllers\\StudentCourseController.cs",
               "ToolTip": "C:\\Users\\moataz\\Desktop\\GradProject\\Moataz\\GradProject\\JWT\\Controllers\\StudentCourseController.cs",
               "RelativeToolTip": "JWT\\Controllers\\StudentCourseController.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAUwDsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAADwvzsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-28T18:51:21.32Z",
               "EditorCaption": ""
