@@ -295,7 +295,7 @@ namespace JWT.Controllers
 
         //// Admin registration (for demo purposes)
         [HttpPost("RegisterAdmin")]
-        [Authorize(Roles= "SuperAdmin")]
+        
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterUserDTO dto)
         {
             if (!ModelState.IsValid)
@@ -335,6 +335,7 @@ namespace JWT.Controllers
         // Register Doctor (Only Admin can use this endpoint)
         [HttpPost("RegisterDoctor")]
         [Authorize(Roles = "Admin")] // Only Admins can register Doctors
+        
         public async Task<IActionResult> RegisterDoctor([FromBody] RegisterDoctorDTO dto)
         {
             if (!ModelState.IsValid)
